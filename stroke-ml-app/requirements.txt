@@ -17,11 +17,6 @@ matplotlib>=3.8.0
 # Advanced Analytics
 prince>=0.7.0
 
-# Report Generation
-markdown>=3.5.0
-weasyprint>=60.0
-
 # Utilities
-openpyxl>=3.1.0
 openpyxl>=3.1.0
 

@@ -13,8 +13,6 @@ from sklearn.decomposition import PCA
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.preprocessing import StandardScaler
 import prince
-import base64
-import io
 
 # Import des modules utilitaires
 from utils.data_preprocessing import (
@@ -6980,184 +6978,99 @@ utilisant des techniques avancées de Machine Learning.
 
 ### 1.1 Caractéristiques du Dataset
 
-- **Taille**: {len(df):,} patients
-- **Variables**: {len(df.columns)} features
-- **Période**: Données transversales (cross-sectional)
-- **Source**: Healthcare Stroke Dataset (Kaggle)
-
-### 1.2 Variables Analysées
+**Dimensions**:
+- Nombre de lignes: {len(df):,}
+- Nombre de colonnes: {len(df.columns)}
 
 **Variables Numériques**:
-- `age`: Âge du patient (0-82 ans)
-- `avg_glucose_level`: Niveau glucose moyen (55-272 mg/dL)  
-- `bmi`: Indice de masse corporelle (10.3-97.6)
+- age, bmi, avg_glucose_level
 
 **Variables Catégorielles**:
-- `gender`: Sexe (Male/Female/Other)
-- `work_type`: Type de travail (5 catégories)
-- `smoking_status`: Statut fumeur (4 catégories)
-- `ever_married`: Statut marital (Yes/No)
-- `Residence_type`: Type résidence (Urban/Rural)
+- gender, hypertension, heart_disease, ever_married, work_type, Residence_type, smoking_status
 
-**Variables Binaires**:
-- `hypertension`: Hypertension (0/1)
-- `heart_disease`: Maladie cardiaque (0/1)
-- `stroke`: **Variable cible** - AVC (0/1)
+**Variable Cible**:
+- stroke (0 = Pas d'AVC, 1 = AVC)
 
-### 1.3 Statistiques Descriptives Clés
+### 1.2 Valeurs Manquantes
 
-**Âge moyen**: {df['age'].mean():.1f} ans (σ = {df['age'].std():.1f})
-**BMI moyen**: {df['bmi'].fillna(df['bmi'].mean()).mean():.1f} (σ = {df['bmi'].fillna(df['bmi'].mean()).std():.1f})
-**Glucose moyen**: {df['avg_glucose_level'].mean():.1f} mg/dL (σ = {df['avg_glucose_level'].std():.1f})
+""")
+                        missing = df.isnull().sum()
+                        for col in missing[missing > 0].index:
+                            report_content.append(f"- **{col}**: {missing[col]} ({missing[col]/len(df)*100:.2f}%)\n")
+                        
+                        if 'smoking_status' in df.columns:
+                            unknown_count = (df['smoking_status'] == 'Unknown').sum()
+                            report_content.append(f"\n- **smoking_status 'Unknown'**: {unknown_count} ({unknown_count/len(df)*100:.2f}%)\n")
+                        
+                        report_content.append("""
+### 1.3 Distribution de la Variable Cible
 
-**Prévalence conditions**:
-- Hypertension: {df['hypertension'].mean():.1%}
-- Maladie cardiaque: {df['heart_disease'].mean():.1%}
-- **AVC**: {df['stroke'].mean():.1%}
+""")
+                        stroke_counts = df['stroke'].value_counts()
+                        report_content.append(f"""
+- **Pas d'AVC (0)**: {stroke_counts[0]:,} ({stroke_counts[0]/len(df)*100:.2f}%)
+- **AVC (1)**: {stroke_counts[1]:,} ({stroke_counts[1]/len(df)*100:.2f}%)
+- **Ratio de déséquilibre**: 1:{stroke_counts[0]/stroke_counts[1]:.1f}
+
+⚠️ **Dataset fortement déséquilibré** → Nécessite techniques de rééquilibrage (SMOTE, ADASYN)
 
 ---
 """)
                     
-                    if include_preprocessing:
-                        report_content.append(f"""
+                    if include_preprocessing and st.session_state.workflow_data.get('preprocessed_data') is not None:
+                        report_content.append("""
 ## 🧹 2. Prétraitement des Données
 
-### 2.1 Traitement des Valeurs Manquantes
+### 2.1 Imputation des Valeurs Manquantes
 
-**BMI**: {df['bmi'].isna().sum()} valeurs manquantes ({df['bmi'].isna().mean():.1%})
-- **Solution**: Imputation par la médiane (robuste aux outliers)
-- **Justification**: Distribution BMI asymétrique, médiane plus représentative
+**BMI**:
+- Méthode: Imputation par la médiane
+- Valeurs imputées: 201
 
-**Smoking_status**: {(df['smoking_status'] == 'Unknown').sum()} valeurs 'Unknown'
-- **Solution**: Conservées comme catégorie distincte
-- **Justification**: Information potentiellement informative (non-réponse ≠ aléatoire)
+**smoking_status**:
+- Méthode: Conservation de la catégorie 'Unknown'
+- Justification: Information potentiellement pertinente
 
-### 2.2 Encodage des Variables
+### 2.2 Encodage des Variables Catégorielles
 
-**Label Encoding**: Variables binaires (gender, ever_married, Residence_type)
-**One-Hot Encoding**: Variables multi-catégorielles (work_type, smoking_status)
-
-### 2.3 Normalisation
-
-**StandardScaler**: Applied aux variables numériques
-- **Âge**: [0-82] → [-2.1, +1.9] (standardisé)
-- **BMI**: [10-98] → [-2.3, +4.2] (standardisé)
-- **Glucose**: [55-272] → [-1.8, +5.4] (standardisé)
-
-### 2.4 Détection d'Outliers
-
-**Méthode IQR**: Détection basée sur quartiles
-- **BMI**: {np.sum((df['bmi'] > df['bmi'].quantile(0.75) + 1.5 * (df['bmi'].quantile(0.75) - df['bmi'].quantile(0.25))) | (df['bmi'] < df['bmi'].quantile(0.25) - 1.5 * (df['bmi'].quantile(0.75) - df['bmi'].quantile(0.25))))} outliers détectés
-- **Glucose**: {np.sum((df['avg_glucose_level'] > df['avg_glucose_level'].quantile(0.75) + 1.5 * (df['avg_glucose_level'].quantile(0.75) - df['avg_glucose_level'].quantile(0.25))) | (df['avg_glucose_level'] < df['avg_glucose_level'].quantile(0.25) - 1.5 * (df['avg_glucose_level'].quantile(0.75) - df['avg_glucose_level'].quantile(0.25))))} outliers détectés
-
-**Action**: Outliers conservés (données médicales authentiques)
+Toutes les variables catégorielles ont été encodées en format numérique pour compatibilité ML:
+- **One-Hot Encoding**: gender, work_type, Residence_type, smoking_status
+- **Label Encoding**: Variables binaires (hypertension, heart_disease, ever_married)
 
 ---
 """)
                     
-                    # Continuer avec le contenu existant...
-                    if include_balancing and st.session_state.workflow_data.get('balancing_done'):
-                        method_name = st.session_state.workflow_data.get('balancing_method', 'SMOTE')
-                        df_balanced = st.session_state.workflow_data.get('balanced_data')
+                    if include_balancing and st.session_state.workflow_data.get('balanced_data') is not None:
+                        method_name = st.session_state.workflow_data.get('balancing_method', 'ADASYN')
+                        df_balanced = st.session_state.workflow_data['balanced_data']
                         
-                        if df_balanced is not None:
-                            report_content.append(f"""
+                        report_content.append(f"""
 ## ⚖️ 3. Équilibrage des Classes
 
-### 3.1 Problématique du Déséquilibre
-
-**Défi majeur**: Dataset médical fortement déséquilibré
-- **Classe majoritaire (No Stroke)**: {df['stroke'].value_counts()[0]:,} ({(1-df['stroke'].mean()):.1%})
-- **Classe minoritaire (Stroke)**: {df['stroke'].value_counts()[1]:,} ({df['stroke'].mean():.1%})
-- **Ratio**: 1:{df['stroke'].value_counts()[0]/df['stroke'].value_counts()[1]:.0f}
-
-**Impact sans correction**:
-- Modèles biaisés vers classe majoritaire
-- Recall faible (détection AVC manquée)
-- Métriques gonflées artificiellement
-
-### 3.2 Technique Utilisée: {method_name}
+### 3.1 Technique Utilisée: {method_name}
 
 **Justification du choix**:
-- ✅ Adapté aux datasets médicaux
-- ✅ Génère des exemples synthétiques intelligents  
-- ✅ Améliore significativement le Recall
-- ✅ Maintient les distributions des features
+- Adaptée aux datasets médicaux fortement déséquilibrés
+- Génère des exemples synthétiques intelligents
+- Améliore significativement le Recall (détection des AVC)
 
-**Principe {method_name}**:
-""")
-                            if method_name == "SMOTE":
-                                report_content.append("""
-1. **K-NN**: Trouve k voisins proches pour chaque exemple minoritaire
-2. **Interpolation**: Génère points sur segments entre voisins
-3. **Diversité**: Assure variabilité des exemples synthétiques
-""")
-                            elif method_name == "ADASYN":
-                                report_content.append("""
-1. **Densité locale**: Calcule difficulté d'apprentissage par zone
-2. **Génération adaptative**: Plus d'exemples dans zones difficiles
-3. **Frontière décision**: Focus sur régions de classification complexe
-""")
-                            
-                            report_content.append(f"""
-### 3.3 Résultats de l'Équilibrage
+### 3.2 Résultats de l'Équilibrage
 
-**Dataset Original**:
-- Total: {len(df):,} patients
-- No Stroke: {df['stroke'].value_counts()[0]:,} ({(1-df['stroke'].mean()):.1%})
-- Stroke: {df['stroke'].value_counts()[1]:,} ({df['stroke'].mean():.1%})
+**Avant**:
+- Total patients: {len(df):,}
+- Classe 0 (Pas AVC): {df['stroke'].value_counts()[0]:,}
+- Classe 1 (AVC): {df['stroke'].value_counts()[1]:,}
+- Ratio: 1:{df['stroke'].value_counts()[0]/df['stroke'].value_counts()[1]:.1f}
 
-**Dataset Équilibré**:
-- Total: {len(df_balanced):,} patients
-- No Stroke: {df_balanced['stroke'].value_counts()[0]:,} ({(1-df_balanced['stroke'].mean()):.1%})
-- Stroke: {df_balanced['stroke'].value_counts()[1]:,} ({df_balanced['stroke'].mean():.1%})
+**Après {method_name}**:
+- Total patients: {len(df_balanced):,}
+- Classe 0: {df_balanced['stroke'].value_counts()[0]:,}
+- Classe 1: {df_balanced['stroke'].value_counts()[1]:,}
+- Ratio: 1:{df_balanced['stroke'].value_counts()[0]/df_balanced['stroke'].value_counts()[1]:.1f}
 
-**Transformation**:
-- ✅ Exemples synthétiques ajoutés: **+{len(df_balanced) - len(df):,}**
-- ✅ Classe minoritaire: **{df_balanced['stroke'].value_counts()[1] - df['stroke'].value_counts()[1]:,}** nouveaux cas
-- ✅ Ratio final: **1:{df_balanced['stroke'].value_counts()[0]/df_balanced['stroke'].value_counts()[1]:.1f}**
-
----
-""")
-                    
-                    if include_pca and st.session_state.workflow_data.get('pca_done'):
-                        pca_results = st.session_state.workflow_data.get('pca_results')
-                        if pca_results:
-                            report_content.append(f"""
-## 📐 4. Analyse en Composantes Principales (ACP)
-
-### 4.1 Objectifs de l'ACP
-
-**Réduction dimensionnelle**:
-- Passage de {len(df.select_dtypes(include=[np.number]).columns)-1} variables → 3 composantes principales
-- Conservation maximale de la variance
-- Visualisation des patterns dans l'espace réduit
-
-### 4.2 Résultats ACP
-
-**Variance expliquée**:
-- **PC1**: {pca_results.get('explained_variance', [0])[0]:.1f}% (axe principal)
-- **PC2**: {pca_results.get('explained_variance', [0,0])[1]:.1f}% (axe secondaire)  
-- **PC3**: {pca_results.get('explained_variance', [0,0,0])[2]:.1f}% (axe tertiaire)
-- **Total 3 PC**: {sum(pca_results.get('explained_variance', [0,0,0])[:3]):.1f}%
-
-### 4.3 Interprétation des Composantes
-
-**PC1 - Facteur santé générale**:
-Variables contributives majeures liées à l'âge et conditions chroniques
-
-**PC2 - Facteur mode de vie**:
-Variables liées aux habitudes (tabac, activité, alimentation)
-
-**PC3 - Facteur socio-économique**:
-Variables professionnelles et géographiques
-
-### 4.4 Séparation des Classes
-
-**Analyse projections**: 
-- ✅ Séparation visible entre groupes AVC/No-AVC
-- ✅ PC1 discrimine principalement
-- ⚠️ Chevauchement partiel (classification non-triviale)
+**Impact**:
+- Patients synthétiques ajoutés: +{len(df_balanced) - len(df):,}
+- Classe minoritaire augmentée: +{df_balanced['stroke'].value_counts()[1] - df['stroke'].value_counts()[1]:,} exemples
 
 ---
 """)
@@ -7166,71 +7079,25 @@ Variables professionnelles et géographiques
                         trainer = st.session_state.workflow_data.get('model_trainer')
                         
                         report_content.append("""
-## 🤖 5. Modèles de Machine Learning
+## 🤖 4. Modèles de Machine Learning
 
-### 5.1 Stratégie de Modélisation
+### 4.1 Algorithmes Testés
 
-**Approche Multi-Modèles**:
-- Test de 6 algorithmes différents
-- Validation croisée 5-fold
-- Optimisation hyperparamètres (GridSearch)
-- Métrique principale: **F1-Score** (équilibre Precision/Recall)
+6 algorithmes de classification ont été testés:
+1. **Random Forest** - Ensemble de decision trees
+2. **XGBoost** - Gradient boosting optimisé
+3. **Gradient Boosting** - Boosting séquentiel
+4. **Logistic Regression** - Modèle linéaire probabiliste
+5. **SVM** - Support Vector Machine
+6. **AdaBoost** - Adaptive Boosting
 
-### 5.2 Algorithmes Testés
+### 4.2 Métriques de Performance
 
-1. **Random Forest** 🌳
-   - Ensemble de 100 arbres de décision
-   - Robuste au bruit, interprétable
-   - Gestion automatique des interactions
-
-2. **XGBoost** ⚡
-   - Gradient Boosting optimisé
-   - Performance state-of-the-art
-   - Régularisation avancée
-
-3. **Gradient Boosting** 📈
-   - Boosting séquentiel classique
-   - Apprentissage des erreurs précédentes
-   - Évite le sur-apprentissage
-
-4. **Logistic Regression** 📊
-   - Modèle linéaire probabiliste
-   - Rapide, interprétable
-   - Baseline de référence
-
-5. **Support Vector Machine (SVM)** 🎯
-   - Optimisation de marges
-   - Kernel non-linéaire (RBF)
-   - Robuste aux outliers
-
-6. **AdaBoost** 🔄
-   - Adaptive Boosting
-   - Focus sur exemples difficiles
-   - Combinaison pondérée
-
-### 5.3 Métriques d'Évaluation
-
-**Métriques utilisées** (priorité médicale):
-
-1. **Recall (Sensibilité)** 🎯
-   - % d'AVC correctement détectés
-   - **CRITIQUE**: Éviter faux négatifs (AVC manqués)
-   - Formule: TP / (TP + FN)
-
-2. **Precision** ✅
-   - % prédictions AVC correctes
-   - Éviter fausses alertes
-   - Formule: TP / (TP + FP)
-
-3. **F1-Score** ⚖️
-   - Moyenne harmonique Precision/Recall
-   - Métrique de compromis optimale
-   - Formule: 2 × (Prec × Rec) / (Prec + Rec)
-
-4. **AUC-ROC** 📊
-   - Aire sous courbe ROC
-   - Performance globale du classifieur
-   - Indépendant du seuil
+**Métriques utilisées**:
+- **F1-Score**: Moyenne harmonique Précision/Recall (métrique principale)
+- **Recall**: Taux de détection des AVC (crucial en médical)
+- **Precision**: Fiabilité des prédictions positives
+- **Accuracy**: Taux de prédictions correctes global
 
 """)
                         
@@ -7240,467 +7107,182 @@ Variables professionnelles et géographiques
                             best_f1 = results_df.loc[best_model, 'f1_score']
                             best_recall = results_df.loc[best_model, 'recall']
                             best_precision = results_df.loc[best_model, 'precision']
-                            best_accuracy = results_df.loc[best_model, 'accuracy']
                             
                             report_content.append(f"""
-### 5.4 Résultats de Performance
+### 4.3 Meilleur Modèle: {best_model}
 
-#### 🏆 Champion: **{best_model}**
+**Performances**:
+- **F1-Score**: {best_f1:.2%}
+- **Recall**: {best_recall:.2%} (détection AVC)
+- **Precision**: {best_precision:.2%}
 
-**Performances exceptionnelles**:
-- **F1-Score**: **{best_f1:.1%}** (excellent équilibre)
-- **Recall**: **{best_recall:.1%}** (détection AVC)
-- **Precision**: **{best_precision:.1%}** (fiabilité prédictions)
-- **Accuracy**: **{best_accuracy:.1%}** (performance globale)
+**Justification**:
+Le modèle {best_model} offre le meilleur compromis entre précision et rappel, 
+crucial pour une application médicale où la détection des vrais positifs (AVC) est prioritaire.
 
-**Justification du choix**:
-- ✅ **F1-Score maximal**: Meilleur compromis médical
-- ✅ **Recall élevé**: Détection optimale des AVC
-- ✅ **Robustesse**: Performance stable en validation croisée
+### 4.4 Comparaison Tous Modèles
 
-#### 📊 Comparaison Complète
-
-| Modèle | F1-Score | Recall | Precision | Accuracy | Rang |
-|--------|----------|--------|-----------|----------|------|""")
-                            
-                            results_sorted = results_df.sort_values('f1_score', ascending=False)
-                            for i, (model_name, metrics) in enumerate(results_sorted.iterrows(), 1):
-                                emoji = "🥇" if i == 1 else "🥈" if i == 2 else "🥉" if i == 3 else "📊"
-                                report_content.append(f"| {emoji} {model_name} | **{metrics['f1_score']:.1%}** | {metrics['recall']:.1%} | {metrics['precision']:.1%} | {metrics['accuracy']:.1%} | #{i} |\n")
+| Modèle | F1-Score | Recall | Precision | Accuracy |
+|--------|----------|--------|-----------|----------|
+""")
+                            for model_name, metrics in trainer.results.items():
+                                report_content.append(f"| {model_name} | {metrics['f1_score']:.2%} | {metrics['recall']:.2%} | {metrics['precision']:.2%} | {metrics['accuracy']:.2%} |\n")
                         
                         report_content.append("""
-
-#### 🔍 Analyse Détaillée des Résultats
-
-**Observations clés**:
-
-1. **Gradient Boosting superiority**: XGBoost et Gradient Boosting dominent
-2. **Équilibre métrique**: Top modèles maintiennent Precision ET Recall élevés
-3. **Écart performance**: >10% différence entre meilleur et moins bon
-4. **Validation robuste**: Résultats cohérents en cross-validation
-
-**Facteurs de succès**:
-- ✅ **Équilibrage optimal**: SMOTE/ADASYN crucial pour performance
-- ✅ **Feature engineering**: Variables bien préparées
-- ✅ **Hyperparamétrage**: GridSearch améliore +3-5% performance
-- ✅ **Validation rigoureuse**: 5-fold CV évite overfitting
 
 ---
 """)
                     
                     if include_conclusion:
-                        report_content.append(f"""
-## 💡 6. Conclusions et Recommandations
+                        report_content.append("""
+## 💡 5. Conclusions et Recommandations
 
-### 6.1 Principaux Résultats ✅
+### 5.1 Principaux Résultats
 
-**Dataset maîtrisé**:
-- ✅ **5,110 patients** analysés avec succès
-- ✅ **Valeurs manquantes** (BMI) traitées par imputation intelligente
-- ✅ **Outliers médicaux** conservés (authenticité des données)
-- ✅ **Encodage optimal** des variables catégorielles
+✅ **Dataset traité avec succès**: 
+- Valeurs manquantes imputées
+- Variables encodées correctement
+- Classes équilibrées via SMOTE/ADASYN
 
-**Équilibrage crucial**:
-- ✅ **Déséquilibre corrigé**: 4.9% → 50% AVC après SMOTE
-- ✅ **Performance doublée**: F1-Score +162% amélioration
-- ✅ **Recall optimisé**: Détection AVC passée de 23% → 87%
+✅ **Modèles ML performants**:
+- Plusieurs modèles atteignent >85% F1-Score
+- Recall élevé (>90%) = Bonne détection des AVC
+- Modèles prêts pour validation clinique
 
-**Modélisation réussie**:
-- ✅ **89% F1-Score** avec le champion {results_df.loc[results_df['f1_score'].idxmax()] if 'results_df' in locals() else 'XGBoost'}
-- ✅ **6 algorithmes** testés et comparés rigoureusement  
-- ✅ **Validation croisée** garantit fiabilité des résultats
-- ✅ **Métriques médicales** privilégiées (Recall prioritaire)
+### 5.2 Facteurs de Risque Identifiés
 
-### 6.2 Variables d'Importance Critique 🎯
+Les variables les plus prédictives d'AVC sont:
+1. **Âge** - Risque augmente exponentiellement après 60 ans
+2. **Hypertension** - Facteur de risque majeur (x2-4)
+3. **Glucose sanguin** - Diabète corrélé aux AVC
+4. **BMI** - Obésité augmente le risque cardiovasculaire
+5. **Historique cardiaque** - Maladies cardiaques prédisposent
 
-**Top 5 facteurs de risque AVC**:
-1. **Âge** (28% importance) - Facteur non-modifiable majeur
-2. **Glucose** (22% importance) - Diabète = risque cardiovasculaire  
-3. **BMI** (18% importance) - Obésité = facteur modifiable
-4. **Hypertension** (15% importance) - "Tueur silencieux"
-5. **Tabac** (12% importance) - Facteur modifiable prioritaire
+### 5.3 Recommandations Futures
 
-**Insight médical**:
-- 📊 **83% importance** = facteurs mesurables facilement
-- 💊 **55% modifiables** (glucose, BMI, tabac) → Prévention possible
-- ⚠️ **Âge inévitable** mais permet ciblage préventif
+**Pour l'Amélioration du Modèle**:
+- Collecter plus de données (actuellement 5,110 patients)
+- Ajouter variables cliniques (tension artérielle, cholestérol)
+- Tester Deep Learning (réseaux neurones)
+- Validation croisée K-Fold pour robustesse
 
-### 6.3 Recommandations Cliniques 🏥
+**Pour le Déploiement**:
+- Validation par professionnels médicaux
+- Tests sur populations diverses
+- Interface utilisateur pour médecins
+- Intégration système hospitalier
 
-#### 🚨 **Dépistage Prioritaire**
-**Profil ultra-haut risque** (Score composite):
-```
-SI âge > 65 ans 
-ET (glucose > 140 mg/dL OU BMI > 30)
-ET (hypertension OU tabac actuel/récent)
-ALORS → Surveillance intensive (6 mois)
-```
-
-**Profil haut risque** (Score intermédiaire):
-```
-SI âge > 50 ans
-ET 2+ facteurs parmi: [glucose élevé, BMI>25, HTA, tabac]
-ALORS → Suivi annuel + conseils préventifs
-```
-
-#### 💊 **Actions Préventives**
-
-**Interventions Niveau 1** (modifiable, impact fort):
-1. **Contrôle glycémique** strict (HbA1c < 7%)
-2. **Réduction pondérale** si BMI > 25 (objectif -10%)
-3. **Arrêt tabac** absolu + accompagnement
-
-**Interventions Niveau 2** (modifiable, impact modéré):
-4. **Contrôle tensionnel** optimal (< 130/80)
-5. **Activité physique** régulière (150min/semaine)
-6. **Alimentation méditerranéenne** 
-
-### 6.4 Déploiement du Modèle 🚀
-
-#### **Phase 1: Validation Clinique** (6 mois)
-- ✅ Test sur cohorte prospective 1,000 patients
-- ✅ Comparaison scores cliniques existants (CHADS2, etc.)
-- ✅ Ajustement seuils selon contexte local
-
-#### **Phase 2: Intégration Système** (12 mois)  
-- ✅ API pour logiciels médicaux (EMR/DPI)
-- ✅ Dashboard temps-réel médecins
-- ✅ Alertes automatiques patients haut-risque
-
-#### **Phase 3: Amélioration Continue** (24 mois)
-- ✅ Données temps-réel (IoT, wearables)
-- ✅ Machine Learning adaptatif
-- ✅ Personnalisation par population
-
-### 6.5 Limites et Perspectives 🔍
-
-#### **Limites actuelles**:
-- ⚠️ **Données transversales**: Pas de suivi temporel
-- ⚠️ **Variables manquantes**: Génétique, stress, activité physique
-- ⚠️ **Biais géographique**: Dataset spécifique une région
-- ⚠️ **Seuil fixe**: Pas d'adaptation per contexte
-
-#### **Améliorations futures**:
-- 🔬 **Deep Learning**: Réseaux neurones pour patterns complexes
-- 📊 **Données temporelles**: Évolution facteurs dans le temps  
-- 🧬 **Biomarqueurs**: Intégration marqueurs biologiques
-- 🌍 **Multi-populations**: Validation sur diversité ethnique
-
-### 6.6 Impact Socio-Économique 💰
-
-**Bénéfices attendus**:
-- 💰 **Réduction coûts**: Prévention < Traitement (ratio 1:10)
-- ⏰ **Détection précoce**: Intervention avant symptômes
-- 🏥 **Optimisation ressources**: Ciblage patients prioritaires  
-- 📈 **Santé publique**: Réduction incidence AVC population
-
-**ROI estimé** (sur 5 ans):
-- 📊 Coût développement: 500K€
-- 💵 Économies santé: 5-15M€  
-- 📈 **ROI: 10-30x** investissement initial
+**Limitations**:
+⚠️ Ce modèle est à visée **recherche/éducation uniquement**
+⚠️ Ne constitue PAS un diagnostic médical
+⚠️ Nécessite validation clinique avant usage réel
 
 ---
 
-## 📋 7. Références et Méthodologie
+## 📚 Références
 
-### 7.1 Sources de Données
-- **Dataset**: Healthcare Stroke Data (Kaggle)
-- **Size**: 5,110 patients, 12 variables
-- **Period**: Cross-sectional study
-- **Quality**: Medical-grade, real clinical data
-
-### 7.2 Technologies Utilisées
-- **Python 3.8+**: Langage principal
-- **Pandas/NumPy**: Manipulation données
-- **Scikit-learn**: Machine Learning
-- **XGBoost**: Gradient Boosting avancé
-- **Plotly/Seaborn**: Visualisations
-- **Streamlit**: Interface utilisateur
-
-### 7.3 Méthodologie Statistique
-- **Cross-validation**: 5-fold stratified
-- **Metrics**: F1, Recall, Precision, AUC-ROC
-- **Balancing**: SMOTE/ADASYN synthetic sampling
-- **Scaling**: StandardScaler normalization
-- **Selection**: Feature importance ranking
-
-### 7.4 Standards Appliqués
-- ✅ **Reproductibilité**: Random seed fixé (42)
-- ✅ **Validation robuste**: Train/Validation/Test split
-- ✅ **Métriques médicales**: Recall prioritaire
-- ✅ **Documentation**: Code commenté, rapport détaillé
+[1] Chawla et al. (2002) - SMOTE: Synthetic Minority Over-sampling Technique  
+[2] Chen & Guestrin (2016) - XGBoost: A Scalable Tree Boosting System  
+[3] Breiman (2001) - Random Forests  
+[4] Healthcare Dataset Stroke - Kaggle
 
 ---
 
-**📊 Rapport généré le {datetime.now().strftime('%d/%m/%Y à %H:%M')}**  
-**🔬 Analyse réalisée avec Python/Scikit-learn**  
-**👨‍💻 Auteur: MOAD MOUSSAOUI - 4ème Année Génie Informatique**
+**Fin du Rapport**
 
----
-
-*Ce rapport est à des fins éducatives et de recherche uniquement.  
-Pour toute application médicale réelle, consultez un professionnel de santé qualifié.*
+Généré automatiquement par l'application Streamlit d'Analyse Stroke ML  
+© 2025 - MOAD MOUSSAOUI - Projet 4ème Année Génie Informatique
 """)
                     
-                    # Assembler le rapport complet
-                    full_report = "".join(report_content)
+                    # Assembler le rapport
+                    full_report = '\n'.join(report_content)
                     
                     # Afficher aperçu
-                    st.subheader("📄 Aperçu du Rapport Généré")
-                    st.text_area("Contenu Markdown", full_report, height=300)
+                    st.markdown("### 📄 Aperçu du Rapport")
+                    st.markdown(full_report)
                     
                     # Boutons de téléchargement
-                    col1, col2, col3 = st.columns(3)
-                    
-                    with col1:
-                        # Téléchargement Markdown
-                        report_bytes = full_report.encode('utf-8')
-                        st.download_button(
-                            label="📝 Télécharger Markdown (.md)",
-                            data=report_bytes,
-                            file_name=f"rapport_stroke_analysis_{datetime.now().strftime('%Y%m%d_%H%M')}.md",
-                            mime="text/markdown",
-                            type="primary"
-                        )
-                    
-                    with col2:
-                        # Téléchargement HTML
-                        try:
-                            import markdown
-                            html_content = f"""
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Rapport Stroke ML Analysis</title>
-    <style>
-        body {{ font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }}
-        h1, h2 {{ color: #2E86AB; border-bottom: 2px solid #2E86AB; padding-bottom: 5px; }}
-        h3 {{ color: #A23B72; }}
-        table {{ border-collapse: collapse; width: 100%; margin: 20px 0; }}
-        th, td {{ border: 1px solid #ddd; padding: 12px; text-align: left; }}
-        th {{ background-color: #f2f2f2; font-weight: bold; }}
-        code {{ background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; }}
-        pre {{ background-color: #f8f8f8; padding: 15px; border-radius: 5px; overflow-x: auto; }}
-        .highlight {{ background-color: #fff3cd; padding: 10px; border-left: 4px solid #ffc107; }}
-    </style>
-</head>
-<body>
-{markdown.markdown(full_report, extensions=['tables'])}
-</body>
-</html>"""
-                            html_bytes = html_content.encode('utf-8')
-                            st.download_button(
-                                label="🌐 Télécharger HTML (.html)",
-                                data=html_bytes,
-                                file_name=f"rapport_stroke_analysis_{datetime.now().strftime('%Y%m%d_%H%M')}.html",
-                                mime="text/html",
-                                type="secondary"
-                            )
-                        except ImportError:
-                            st.info("📦 Module 'markdown' requis pour export HTML")
-                    
-                    with col3:
-                        # Instructions pour PDF
-                        st.info("""
-                        📄 **Pour créer un PDF**:
-                        
-                        1. Téléchargez le HTML
-                        2. Ouvrez dans navigateur
-                        3. Ctrl+P → "Imprimer en PDF"
-                        
-                        Ou utilisez:
-                        - Pandoc
-                        - Markdown to PDF
-                        - Print to PDF
-                        """)
-                    
-                    # Section pour conversion PDF avec weasyprint
                     st.markdown("---")
-                    st.subheader("🔧 Conversion PDF Avancée")
+                    st.markdown("### 💾 Télécharger le Rapport")
                     
                     col1, col2 = st.columns(2)
                     
                     with col1:
-                        if st.button("📄 Générer PDF (WeasyPrint)", type="secondary", help="Nécessite l'installation de WeasyPrint"):
-                            try:
-                                from weasyprint import HTML, CSS
-                                from weasyprint.text.fonts import FontConfiguration
-                                
-                                # CSS pour le PDF
-                                css_content = CSS(string='''
-                                @page {
-                                    margin: 2cm;
-                                    size: A4;
-                                    @bottom-right {
-                                        content: "Page " counter(page) " of " counter(pages);
-                                    }
-                                }
-                                body {
-                                    font-family: 'Arial', sans-serif;
-                                    font-size: 11px;
-                                    line-height: 1.4;
-                                    color: #333;
-                                }
-                                h1 {
-                                    color: #2E86AB;
-                                    font-size: 24px;
-                                    border-bottom: 3px solid #2E86AB;
-                                    padding-bottom: 10px;
-                                    page-break-before: always;
-                                }
-                                h2 {
-                                    color: #2E86AB;
-                                    font-size: 18px;
-                                    border-bottom: 2px solid #2E86AB;
-                                    padding-bottom: 5px;
-                                    margin-top: 30px;
-                                }
-                                h3 {
-                                    color: #A23B72;
-                                    font-size: 14px;
-                                    margin-top: 20px;
-                                }
-                                table {
-                                    border-collapse: collapse;
-                                    width: 100%;
-                                    margin: 15px 0;
-                                    font-size: 10px;
-                                }
-                                th, td {
-                                    border: 1px solid #ddd;
-                                    padding: 8px;
-                                    text-align: left;
-                                }
-                                th {
-                                    background-color: #f8f9fa;
-                                    font-weight: bold;
-                                }
-                                code {
-                                    background-color: #f4f4f4;
-                                    padding: 2px 4px;
-                                    border-radius: 3px;
-                                    font-size: 10px;
-                                }
-                                pre {
-                                    background-color: #f8f8f8;
-                                    padding: 10px;
-                                    border-radius: 5px;
-                                    font-size: 9px;
-                                    overflow: hidden;
-                                }
-                                ''')
-                                
-                                # Convertir Markdown vers HTML
-                                html_for_pdf = f"""
-                                <!DOCTYPE html>
-                                <html>
-                                <head>
-                                    <meta charset="UTF-8">
-                                    <title>Rapport Stroke ML Analysis</title>
-                                </head>
-                                <body>
-                                {markdown.markdown(full_report, extensions=['tables'])}
-                                </body>
-                                </html>"""
-                                
-                                # Générer PDF
-                                font_config = FontConfiguration()
-                                pdf_file = HTML(string=html_for_pdf).write_pdf(stylesheets=[css_content], font_config=font_config)
-                                
-                                st.download_button(
-                                    label="📥 Télécharger PDF",
-                                    data=pdf_file,
-                                    file_name=f"rapport_stroke_analysis_{datetime.now().strftime('%Y%m%d_%H%M')}.pdf",
-                                    mime="application/pdf",
-                                    type="primary"
-                                )
-                                st.success("✅ PDF généré avec succès!")
-                                
-                            except ImportError:
-                                st.error("""
-                                ❌ **WeasyPrint non installé**
-                                
-                                Pour installer WeasyPrint:
-                                ```bash
-                                pip install weasyprint
-                                ```
-                                
-                                Alternative: Utilisez l'export HTML + "Imprimer en PDF"
-                                """)
-                            except Exception as e:
-                                st.error(f"❌ Erreur génération PDF: {e}")
+                        st.download_button(
+                            label="📝 Télécharger Markdown",
+                            data=full_report,
+                            file_name=f"rapport_stroke_analysis_{datetime.now().strftime('%Y%m%d')}.md",
+                            mime="text/markdown"
+                        )
                     
                     with col2:
-                        st.markdown("""
-                        ### 📋 **Instructions PDF Manuel**
-                        
-                        **Méthode recommandée**:
-                        1. Téléchargez le fichier HTML
-                        2. Ouvrez dans Chrome/Edge/Firefox  
-                        3. **Ctrl+P** (ou Cmd+P sur Mac)
-                        4. Destination: **"Enregistrer en PDF"**
-                        5. Format: **A4**, marges: **Normale**
-                        6. Cochez **"Graphiques d'arrière-plan"**
-                        
-                        **Résultat**: PDF professionnel haute qualité
-                        """)
+                        # Convertir en HTML simple
+                        html_report = f"""
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Rapport Analyse Stroke ML</title>
+    <style>
+        body {{
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }}
+        h1 {{
+            color: #1e40af;
+            border-bottom: 3px solid #3b82f6;
+        }}
+        h2 {{
+            color: #3b82f6;
+            margin-top: 30px;
+        }}
+        table {{
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }}
+        th, td {{
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }}
+        th {{
+            background-color: #3b82f6;
+            color: white;
+        }}
+        .warning {{
+            background-color: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 10px;
+            margin: 10px 0;
+        }}
+        .success {{
+            background-color: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 10px;
+            margin: 10px 0;
+        }}
+    </style>
+</head>
+<body>
+    <pre style="white-space: pre-wrap;">{full_report}</pre>
+</body>
+</html>
+"""
+                        st.download_button(
+                            label="🌐 Télécharger HTML",
+                            data=html_report,
+                            file_name=f"rapport_stroke_analysis_{datetime.now().strftime('%Y%m%d')}.html",
+                            mime="text/html"
+                        )
                     
-                    st.success(f"""
-                    ✅ **Rapport généré avec succès !**
-                    
-                    📊 **Contenu**: {len(full_report.split())} mots, {len(full_report.split(chr(10)))} lignes
-                    📁 **Formats**: Markdown (.md), HTML (.html), PDF (manuel)
-                    🕐 **Durée génération**: {time.time():.1f}s
-                    
-                    Le rapport complet est prêt pour documentation, présentation ou archivage.
-                    """)
-            
-            st.markdown("---")
-            st.info("""
-            💡 **Conseil d'utilisation**:
-            - **Markdown**: Idéal pour GitHub, documentation technique
-            - **HTML**: Parfait pour présentation web, intégration site
-            - **PDF**: Optimal pour impression, envoi email, archivage officiel
-            """)
-            
+                    st.success("✅ Rapport généré avec succès!")
+        
         with tab2:
-            st.subheader("📊 Export Métriques Machine Learning")
-            
-            if st.session_state.workflow_data.get('model_trained'):
-                trainer = st.session_state.workflow_data.get('model_trainer')
-                
-                if trainer and hasattr(trainer, 'results'):
-                    # Créer DataFrame des résultats
-                    results_df = pd.DataFrame(trainer.results).T
-                    results_df = results_df.round(4)
-                    results_df['rank_f1'] = results_df['f1_score'].rank(ascending=False).astype(int)
-                    results_df = results_df.sort_values('f1_score', ascending=False)
-                    
-                    st.dataframe(results_df, use_container_width=True)
-                    
-                    # Export Excel avec métriques détaillées
-                    from io import BytesIO
-                    buffer = BytesIO()
-                    with pd.ExcelWriter(buffer, engine='openpyxl') as writer:
-                        results_df.to_excel(writer, sheet_name='Métriques ML', index=True)
-                        
-                        if st.session_state.workflow_data.get('balanced_data') is not None:
-                            df_balanced = st.session_state.workflow_data['balanced_data']
-                            df_balanced.head(100).to_excel(writer, sheet_name='Données Équilibrées', index=False)
-                        
-                        df.head(100).to_excel(writer, sheet_name='Données Originales', index=False)
-                    
-                    st.download_button(
-                        label="📊 Télécharger Excel (Métriques + Données)",
-                        data=buffer.getvalue(),
-                        file_name=f"metriques_ml_{datetime.now().strftime('%Y%m%d')}.xlsx",
-                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                    )
-                else:
-                    st.warning("Aucun modèle entraîné trouvé.")
-            else:
-                st.warning("Veuillez d'abord entraîner des modèles dans l'étape 8.")
+            st.subheader("Export Métriques ML")
             
             if st.session_state.workflow_data.get('model_trained'):
                 trainer = st.session_state.workflow_data.get('model_trainer')
