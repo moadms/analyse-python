@@ -161,12 +161,29 @@ def main():
     
     # === PAGE: ACCUEIL ===
     if page == "🏠 Accueil":
-        # Header avec auteur
+        # Header avec informations du projet
         st.markdown("""
         <div style='text-align: center; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; margin-bottom: 20px;'>
-            <h1 style='color: white; margin: 0;'>🧠 Prédiction des AVC par Machine Learning</h1>
-            <p style='color: #e0e7ff; font-size: 18px; margin: 10px 0 0 0;'>
-                Créé par <strong>MOAD MOUSSAOUI</strong> | Projet 4ème Année Génie Informatique
+            <h1 style='color: white; margin: 0; font-size: 2.5rem;'>🧠 Prédiction des AVC par Machine Learning</h1>
+            <div style='margin: 15px 0;'>
+                <p style='color: #e0e7ff; font-size: 18px; margin: 5px 0;'>
+                    <strong>👨‍🎓 Réalisé par:</strong> MOAD MOUSSAOUI | 4ème Année Génie Informatique
+                </p>
+                <p style='color: #e0e7ff; font-size: 18px; margin: 5px 0;'>
+                    <strong>👩‍🏫 Encadrante:</strong> Pr. Zineb BOUSBAA
+                </p>
+                <p style='color: #e0e7ff; font-size: 18px; margin: 5px 0;'>
+                    <strong>🏫 Institution:</strong> École Marocaine des Sciences de l'Ingénieur - EMSI Marrakech
+                </p>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("""
+        <div style='text-align: center; padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; margin: 20px 0;'>
+            <h2 style='color: white; margin: 0;'>🎓 Projet Académique de Data Science & Machine Learning</h2>
+            <p style='color: #e0e7ff; font-size: 16px; margin: 10px 0 0 0;'>
+                Application d'Analyse Prédictive des Accidents Vasculaires Cérébraux (AVC)
             </p>
         </div>
         """, unsafe_allow_html=True)
@@ -280,6 +297,12 @@ def main():
             
             # Détails de chaque article
             with st.expander("📖 Détails [1] - Khan et al. (IEEE Xplore 2022) - Q2"):
+                st.markdown("""
+                **🔗 Liens de l'article**:
+                - [IEEE Xplore - Brain Stroke Prediction using Machine Learning](https://ieeexplore.ieee.org/document/9764018)
+                - [Google Scholar - Khan et al. 2022](https://scholar.google.com/scholar?q="Brain+Stroke+Prediction+using+Machine+Learning"+Khan+2022+IEEE)
+                """)
+                
                 col1, col2 = st.columns(2)
                 with col1:
                     st.write("**Objectif**: Comparer Random Forest, SVM, Decision Tree pour prédiction AVC")
@@ -297,6 +320,12 @@ def main():
                     st.success("✅ Meilleur algorithme: **Random Forest**")
             
             with st.expander("📖 Détails [2] - Sailasya & Aruna Kumari (IJERT 2020) - Q3"):
+                st.markdown("""
+                **🔗 Liens de l'article**:
+                - [IJERT - Analyzing the Performance of Stroke Prediction using ML](https://www.ijert.org/analyzing-the-performance-of-stroke-prediction-using-ml-techniques)
+                - [Google Scholar - Sailasya & Aruna Kumari 2020](https://scholar.google.com/scholar?q="Analyzing+the+Performance+of+Stroke+Prediction+using+ML"+Sailasya+Aruna+Kumari+2020)
+                """)
+                
                 col1, col2 = st.columns(2)
                 with col1:
                     st.write("**Objectif**: Analyse comparative de 6 algorithmes ML")
@@ -314,6 +343,12 @@ def main():
                     st.warning("⚠️ Sans équilibrage, le modèle est biaisé vers la classe majoritaire")
             
             with st.expander("📖 Détails [3] - Dritsas & Trigka (Sensors MDPI 2022) - Q1"):
+                st.markdown("""
+                **🔗 Liens de l'article**:
+                - [MDPI Sensors - Stroke Risk Prediction with Machine Learning Techniques](https://www.mdpi.com/1424-8220/22/13/4670)
+                - [Google Scholar - Dritsas & Trigka 2022](https://scholar.google.com/scholar?q="Stroke+Risk+Prediction+with+Machine+Learning+Techniques"+Dritsas+Trigka+2022+MDPI)
+                """)
+                
                 col1, col2 = st.columns(2)
                 with col1:
                     st.write("**Objectif**: Stroke Risk Prediction avec techniques ML avancées")
@@ -331,6 +366,12 @@ def main():
                     st.success("✅ Publication Q1 (Impact Factor: 3.847)")
             
             with st.expander("📖 Détails [4] - Chawla et al. (JAIR 2002) - Q1 [Référence SMOTE]"):
+                st.markdown("""
+                **🔗 Liens de l'article**:
+                - [JAIR - SMOTE: Synthetic Minority Over-sampling Technique](https://www.jair.org/index.php/jair/article/view/10302)
+                - [Google Scholar - Chawla et al. 2002 SMOTE](https://scholar.google.com/scholar?q="SMOTE+Synthetic+Minority+Oversampling+Technique"+Chawla+2002+JAIR)
+                """)
+                
                 st.write("**📌 Article de référence FONDAMENTAL sur SMOTE**")
                 col1, col2 = st.columns(2)
                 with col1:
@@ -348,6 +389,12 @@ def main():
                     st.success("✅ Article Q1 (JAIR - Top journal AI)")
             
             with st.expander("📖 Détails [5] - Dev & Eden (Kaggle Project 2023)"):
+                st.markdown("""
+                **🔗 Liens du projet**:
+                - [Kaggle - Comparative Analysis of ML Algorithms for Stroke Prediction](https://www.kaggle.com/code/devakumar0/comparative-analysis-of-ml-algorithms-stroke)
+                - [Google Scholar - Comparative Analysis ML Stroke Prediction](https://scholar.google.com/scholar?q="Comparative+Analysis+Machine+Learning+Algorithms+Stroke+Prediction"+Kaggle+2023)
+                """)
+                
                 col1, col2 = st.columns(2)
                 with col1:
                     st.write("**Objectif**: Comparative Analysis of ML Algorithms")
@@ -1702,7 +1749,7 @@ def main():
             with col1:
                 st.markdown("#### 📊 AVANT Équilibrage")
                 stroke_counts_orig = df['stroke'].value_counts()
-                fig1 = px.pie(values=stroke_counts_orig.values, names=['Pas d\'AVC (0)', 'AVC (1)'],
+                fig1 = px.pie(values=stroke_counts_orig.values, names=['Pas AVC (0)', 'AVC (1)'],
                             title="Données Originales",
                             color_discrete_sequence=['#2ecc71', '#e74c3c'])
                 st.plotly_chart(fig1, use_container_width=True)
@@ -1715,7 +1762,7 @@ def main():
                 st.markdown("#### ⚖️ APRÈS Équilibrage")
                 df_balanced = st.session_state.workflow_data['balanced_data']
                 stroke_counts_bal = df_balanced['stroke'].value_counts()
-                fig2 = px.pie(values=stroke_counts_bal.values, names=['Pas d\'AVC (0)', 'AVC (1)'],
+                fig2 = px.pie(values=stroke_counts_bal.values, names=['Pas AVC (0)', 'AVC (1)'],
                             title="Données Équilibrées",
                             color_discrete_sequence=['#2ecc71', '#e74c3c'])
                 st.plotly_chart(fig2, use_container_width=True)
@@ -1735,7 +1782,7 @@ def main():
             col1, col2 = st.columns([1, 1])
             with col1:
                 stroke_counts = df_to_analyze['stroke'].value_counts()
-                fig = px.pie(values=stroke_counts.values, names=['Pas d\'AVC (0)', 'AVC (1)'],
+                fig = px.pie(values=stroke_counts.values, names=['Pas AVC (0)', 'AVC (1)'],
                             title="Répartition de la Variable Cible",
                             color_discrete_sequence=['#2ecc71', '#e74c3c'])
                 st.plotly_chart(fig, use_container_width=True)
@@ -1883,7 +1930,7 @@ def main():
         # Taux d'AVC par genre
         stroke_by_gender = df_to_analyze.groupby('gender')['stroke'].mean() * 100
         fig_stroke = px.bar(x=stroke_by_gender.index, y=stroke_by_gender.values,
-                           labels={'x': 'Genre', 'y': 'Taux d\'AVC (%)'},
+                           labels={'x': 'Genre', 'y': 'Taux AVC (%)'},
                            title="Taux d'AVC par Genre",
                            color=stroke_by_gender.index)
         st.plotly_chart(fig_stroke, use_container_width=True)
@@ -1914,7 +1961,7 @@ def main():
         # Taux d'AVC par hypertension
         stroke_by_hyper = df_to_analyze.groupby('hypertension')['stroke'].mean() * 100
         fig_stroke = px.bar(x=['Pas d\'hypertension', 'Hypertension'], y=stroke_by_hyper.values,
-                           labels={'x': 'Statut Hypertension', 'y': 'Taux d\'AVC (%)'},
+                           labels={'x': 'Statut Hypertension', 'y': 'Taux AVC (%)'},
                            title="Taux d'AVC selon Hypertension",
                            color=['Pas d\'hypertension', 'Hypertension'],
                            color_discrete_sequence=['#2ecc71', '#e67e22'])
@@ -1946,7 +1993,7 @@ def main():
         # Taux d'AVC par maladie cardiaque
         stroke_by_heart = df_to_analyze.groupby('heart_disease')['stroke'].mean() * 100
         fig_stroke = px.bar(x=['Pas de maladie', 'Maladie cardiaque'], y=stroke_by_heart.values,
-                           labels={'x': 'Statut Cardiaque', 'y': 'Taux d\'AVC (%)'},
+                           labels={'x': 'Statut Cardiaque', 'y': 'Taux AVC (%)'},
                            title="Taux d'AVC selon Maladie Cardiaque",
                            color=['Pas de maladie', 'Maladie cardiaque'],
                            color_discrete_sequence=['#3498db', '#c0392b'])
@@ -1978,7 +2025,7 @@ def main():
         # Taux d'AVC par statut marital
         stroke_by_married = df_to_analyze.groupby('ever_married')['stroke'].mean() * 100
         fig_stroke = px.bar(x=stroke_by_married.index, y=stroke_by_married.values,
-                           labels={'x': 'Statut Marital', 'y': 'Taux d\'AVC (%)'},
+                           labels={'x': 'Statut Marital', 'y': 'Taux AVC (%)'},
                            title="Taux d'AVC selon Statut Marital",
                            color=stroke_by_married.index)
         st.plotly_chart(fig_stroke, use_container_width=True)
@@ -2010,7 +2057,7 @@ def main():
         # Taux d'AVC par type de travail
         stroke_by_work = df_to_analyze.groupby('work_type')['stroke'].mean() * 100
         fig_stroke = px.bar(x=stroke_by_work.index, y=stroke_by_work.values,
-                           labels={'x': 'Type de Travail', 'y': 'Taux d\'AVC (%)'},
+                           labels={'x': 'Type de Travail', 'y': 'Taux AVC (%)'},
                            title="Taux d'AVC par Type de Travail",
                            color=stroke_by_work.index)
         st.plotly_chart(fig_stroke, use_container_width=True)
@@ -2042,7 +2089,7 @@ def main():
         # Taux d'AVC par résidence
         stroke_by_res = df_to_analyze.groupby('Residence_type')['stroke'].mean() * 100
         fig_stroke = px.bar(x=stroke_by_res.index, y=stroke_by_res.values,
-                           labels={'x': 'Type de Résidence', 'y': 'Taux d\'AVC (%)'},
+                           labels={'x': 'Type de Résidence', 'y': 'Taux AVC (%)'},
                            title="Taux d'AVC selon Type de Résidence",
                            color=stroke_by_res.index,
                            color_discrete_sequence=['#f39c12', '#27ae60'])
@@ -2081,7 +2128,7 @@ def main():
         # Taux d'AVC par statut tabagique
         stroke_by_smoke = df_to_analyze.groupby('smoking_status')['stroke'].mean() * 100
         fig_stroke = px.bar(x=stroke_by_smoke.index, y=stroke_by_smoke.values,
-                           labels={'x': 'Statut Tabagique', 'y': 'Taux d\'AVC (%)'},
+                           labels={'x': 'Statut Tabagique', 'y': 'Taux AVC (%)'},
                            title="Taux d'AVC par Statut Tabagique",
                            color=stroke_by_smoke.index)
         st.plotly_chart(fig_stroke, use_container_width=True)
@@ -2143,7 +2190,7 @@ def main():
     
     # === PAGE: ANALYSE BIVARIÉE ===
     elif page == "🔗 Étape 3: Analyse Bivariée":
-        st.markdown('<h2 class="section-header">🔗 Analyse Bivariée</h2>', unsafe_allow_html=True)
+        st.markdown('<h2 class="section-header">🔗 Analyse Bivariée - Relations entre Variables</h2>', unsafe_allow_html=True)
         
         # Vérifier si équilibrage fait
         balanced_available = st.session_state.workflow_data.get('balanced_data') is not None
@@ -2158,9 +2205,14 @@ def main():
             )
         else:
             st.info("""
-            Analyse des relations entre variables et leur impact sur la variable cible (stroke).
+            **🎯 Objectif**: Analyser les relations entre variables et identifier les patterns prédictifs.
             
-            💡 **Astuce**: Après l'**Étape 6: Équilibrage**, revenez ici pour voir comment les corrélations changent !
+            Cette étape étudie:
+            - **Relations Variable-Cible**: Comment chaque variable influence le risque d'AVC
+            - **Relations Inter-Variables**: Corrélations et dépendances entre prédicteurs
+            - **Patterns Visuels**: Distribution des variables selon la classe (stroke/pas stroke)
+            
+            💡 **Astuce**: Après l'**Étape 6: Équilibrage**, revenez ici pour voir comment les patterns changent !
             """)
             data_choice = "📊 Données Originales"
         
@@ -2172,57 +2224,601 @@ def main():
             df_to_analyze = df
             st.info("📊 Analyse sur **données originales** (avant équilibrage)")
         
-        tab1, tab2 = st.tabs(["🔥 Corrélations", "🎻 Violin Plots"])
+        # Tabs pour différents types d'analyses
+        tab1, tab2, tab3, tab4 = st.tabs(["🎯 Variable vs Cible", "🔗 Corrélations", "📊 Distributions Comparées", "🧠 Insights & Interprétation"])
         
         with tab1:
-            st.subheader("Matrice de Corrélation")
-            df_processed, _ = preprocess_data(df_to_analyze)
+            st.subheader("🎯 Analyse Variable vs Variable Cible (stroke)")
             
-            method = st.radio("Méthode", ["pearson", "spearman"], horizontal=True)
-            fig = create_correlation_heatmap(df_processed, method=method)
-            st.plotly_chart(fig, use_container_width=True)
+            st.info("""
+            Cette section analyse la **relation de chaque variable avec la variable cible** (stroke).
+            Objectif: Identifier les **facteurs de risque** les plus importants pour prédire un AVC.
+            """)
             
-            if data_choice == "⚖️ Données Équilibrées":
-                st.success("""
-                **✅ Impact de l'Équilibrage sur les Corrélations:**
-                - Les corrélations peuvent être **légèrement différentes** car les données synthétiques ajoutent de la variance
-                - Les patterns importants restent généralement **visibles et renforcés**
-                - La classe minoritaire (stroke=1) a maintenant **plus de poids** dans les calculs
-                """)
-            else:
-                st.info("""
-                **💡 Interprétation:**
-                - Corrélation > 0.7: Forte corrélation positive
-                - Corrélation < -0.7: Forte corrélation négative
-                - Proche de 0: Pas de corrélation linéaire
+            # Sélection de variable
+            col1, col2 = st.columns([2, 3])
+            
+            with col1:
+                # Variables disponibles (exclure id et stroke)
+                available_vars = [col for col in df_to_analyze.columns if col not in ['id', 'stroke']]
+                selected_var = st.selectbox("📋 Sélectionner une variable à analyser", available_vars)
                 
-                ⚠️ **Attention**: Avec le déséquilibre actuel (4.87% AVC), les corrélations avec 'stroke' peuvent être **sous-estimées**.
-                """)
+                # Type de variable
+                is_numeric = df_to_analyze[selected_var].dtype in ['int64', 'float64']
+                var_type = "🔢 Numérique" if is_numeric else "📝 Catégorielle"
+                st.info(f"**Type**: {var_type}")
+            
+            with col2:
+                # Statistiques de base
+                st.markdown("**📊 Statistiques Stroke par Variable**:")
+                
+                if is_numeric:
+                    # Variable numérique
+                    stroke_stats = df_to_analyze.groupby('stroke')[selected_var].agg(['mean', 'median', 'std']).round(2)
+                    stroke_stats.index = ['Pas de Stroke', 'Stroke']
+                    st.dataframe(stroke_stats, use_container_width=True)
+                    
+                    # Test statistique
+                    from scipy.stats import mannwhitneyu
+                    group0 = df_to_analyze[df_to_analyze['stroke'] == 0][selected_var].dropna()
+                    group1 = df_to_analyze[df_to_analyze['stroke'] == 1][selected_var].dropna()
+                    statistic, p_value = mannwhitneyu(group0, group1, alternative='two-sided')
+                    
+                    if p_value < 0.001:
+                        st.success(f"🔥 **Différence TRÈS significative** (p < 0.001)")
+                        significance = "Très forte"
+                    elif p_value < 0.01:
+                        st.warning(f"⚠️ **Différence significative** (p = {p_value:.3f})")
+                        significance = "Forte"
+                    elif p_value < 0.05:
+                        st.info(f"📊 **Différence modérée** (p = {p_value:.3f})")
+                        significance = "Modérée"
+                    else:
+                        st.error(f"❌ **Pas de différence** (p = {p_value:.3f})")
+                        significance = "Faible"
+                        
+                else:
+                    # Variable catégorielle
+                    cross_tab = pd.crosstab(df_to_analyze[selected_var], df_to_analyze['stroke'], margins=True)
+                    cross_tab_pct = pd.crosstab(df_to_analyze[selected_var], df_to_analyze['stroke'], normalize='index') * 100
+                    cross_tab_pct.columns = ['Pas Stroke (%)', 'Stroke (%)']
+                    st.dataframe(cross_tab_pct.round(2), use_container_width=True)
+                    
+                    # Test Chi2
+                    from scipy.stats import chi2_contingency
+                    chi2, p_value, dof, expected = chi2_contingency(cross_tab.iloc[:-1, :-1])
+                    
+                    if p_value < 0.001:
+                        st.success(f"🔥 **Association TRÈS significative** (p < 0.001)")
+                        significance = "Très forte"
+                    elif p_value < 0.01:
+                        st.warning(f"⚠️ **Association significative** (p = {p_value:.3f})")
+                        significance = "Forte"
+                    elif p_value < 0.05:
+                        st.info(f"📊 **Association modérée** (p = {p_value:.3f})")
+                        significance = "Modérée"
+                    else:
+                        st.error(f"❌ **Pas d'association** (p = {p_value:.3f})")
+                        significance = "Faible"
+            
+            # Visualisation selon le type
+            if is_numeric:
+                # Box plot et histogrammes pour variables numériques
+                col1, col2 = st.columns(2)
+                
+                with col1:
+                    # Box plot
+                    fig_box = px.box(df_to_analyze, x='stroke', y=selected_var, 
+                                   color='stroke',
+                                   title=f"Distribution de {selected_var} par Classe",
+                                   labels={'stroke': 'AVC', '0': 'Pas AVC', '1': 'AVC'},
+                                   color_discrete_map={0: '#3498db', 1: '#e74c3c'})
+                    fig_box.update_xaxes(tickvals=[0, 1], ticktext=['Pas AVC', 'AVC'])
+                    st.plotly_chart(fig_box, use_container_width=True)
+                
+                with col2:
+                    # Histogrammes superposés
+                    fig_hist = go.Figure()
+                    
+                    # Groupe sans stroke
+                    data_no_stroke = df_to_analyze[df_to_analyze['stroke'] == 0][selected_var].dropna()
+                    fig_hist.add_trace(go.Histogram(
+                        x=data_no_stroke,
+                        name='Pas AVC',
+                        opacity=0.7,
+                        marker_color='#3498db',
+                        nbinsx=30
+                    ))
+                    
+                    # Groupe avec stroke
+                    data_stroke = df_to_analyze[df_to_analyze['stroke'] == 1][selected_var].dropna()
+                    fig_hist.add_trace(go.Histogram(
+                        x=data_stroke,
+                        name='AVC',
+                        opacity=0.7,
+                        marker_color='#e74c3c',
+                        nbinsx=30
+                    ))
+                    
+                    fig_hist.update_layout(
+                        title=f"Histogrammes Comparés - {selected_var}",
+                        xaxis_title=selected_var,
+                        yaxis_title="Fréquence",
+                        barmode='overlay'
+                    )
+                    st.plotly_chart(fig_hist, use_container_width=True)
+                    
+            else:
+                # Bar plot pour variables catégorielles
+                col1, col2 = st.columns(2)
+                
+                with col1:
+                    # Proportions par catégorie
+                    stroke_pct = df_to_analyze.groupby(selected_var)['stroke'].mean() * 100
+                    
+                    fig_bar = px.bar(x=stroke_pct.index, y=stroke_pct.values,
+                                   title=f"Taux d'AVC par {selected_var}",
+                                   labels={'x': selected_var, 'y': 'Taux AVC (%)'},
+                                   color=stroke_pct.values,
+                                   color_continuous_scale='Reds')
+                    
+                    fig_bar.update_layout(showlegend=False)
+                    st.plotly_chart(fig_bar, use_container_width=True)
+                
+                with col2:
+                    # Stacked bar chart
+                    cross_tab_for_plot = pd.crosstab(df_to_analyze[selected_var], df_to_analyze['stroke'])
+                    
+                    fig_stack = go.Figure()
+                    fig_stack.add_trace(go.Bar(
+                        name='Pas AVC',
+                        x=cross_tab_for_plot.index,
+                        y=cross_tab_for_plot[0],
+                        marker_color='#3498db'
+                    ))
+                    fig_stack.add_trace(go.Bar(
+                        name='AVC',
+                        x=cross_tab_for_plot.index,
+                        y=cross_tab_for_plot[1],
+                        marker_color='#e74c3c'
+                    ))
+                    
+                    fig_stack.update_layout(
+                        title=f"Distribution par {selected_var}",
+                        xaxis_title=selected_var,
+                        yaxis_title="Nombre de patients",
+                        barmode='stack'
+                    )
+                    st.plotly_chart(fig_stack, use_container_width=True)
+            
+            # Interprétation automatique
+            st.markdown("### 🧠 Interprétation Automatique")
+            
+            if is_numeric:
+                mean_no_stroke = df_to_analyze[df_to_analyze['stroke'] == 0][selected_var].mean()
+                mean_stroke = df_to_analyze[df_to_analyze['stroke'] == 1][selected_var].mean()
+                diff_pct = ((mean_stroke - mean_no_stroke) / mean_no_stroke) * 100
+                
+                if significance in ["Très forte", "Forte"]:
+                    if diff_pct > 0:
+                        st.success(f"""
+                        🔍 **Facteur de Risque Identifié**: {selected_var}
+                        
+                        - **Moyenne sans AVC**: {mean_no_stroke:.2f}
+                        - **Moyenne avec AVC**: {mean_stroke:.2f}
+                        - **Différence**: +{diff_pct:.1f}% chez patients avec AVC
+                        - **Conclusion**: Les valeurs **plus élevées** de {selected_var} sont associées à un **risque accru** d'AVC
+                        """)
+                    else:
+                        st.info(f"""
+                        🔍 **Facteur Protecteur Identifié**: {selected_var}
+                        
+                        - **Moyenne sans AVC**: {mean_no_stroke:.2f}
+                        - **Moyenne avec AVC**: {mean_stroke:.2f}
+                        - **Différence**: {diff_pct:.1f}% chez patients avec AVC
+                        - **Conclusion**: Les valeurs **plus faibles** de {selected_var} sont associées à un **risque accru** d'AVC
+                        """)
+                else:
+                    st.warning(f"""
+                    ❌ **Pas d'Association Significative**
+                    
+                    La variable {selected_var} ne montre **pas de différence statistiquement significative** entre les patients avec et sans AVC.
+                    Cette variable a probablement un **faible pouvoir prédictif**.
+                    """)
+            else:
+                # Pour variables catégorielles
+                stroke_rates = df_to_analyze.groupby(selected_var)['stroke'].mean() * 100
+                highest_risk = stroke_rates.idxmax()
+                lowest_risk = stroke_rates.idxmin()
+                
+                if significance in ["Très forte", "Forte"]:
+                    st.success(f"""
+                    🔍 **Patterns Identifiés**: {selected_var}
+                    
+                    - **Catégorie à PLUS haut risque**: "{highest_risk}" ({stroke_rates[highest_risk]:.1f}% de taux d'AVC)
+                    - **Catégorie à PLUS bas risque**: "{lowest_risk}" ({stroke_rates[lowest_risk]:.1f}% de taux d'AVC)
+                    - **Ratio de risque**: x{stroke_rates[highest_risk]/stroke_rates[lowest_risk]:.1f}
+                    - **Conclusion**: {selected_var} est un **prédicteur significatif** d'AVC
+                    """)
+                else:
+                    st.warning(f"""
+                    ❌ **Pas d'Association Significative**
+                    
+                    La variable {selected_var} ne montre **pas d'association statistiquement significative** avec l'AVC.
+                    Les taux d'AVC sont similaires entre les différentes catégories.
+                    """)
         
         with tab2:
-            st.subheader("Distribution par Variable Cible")
-            numeric_cols = df_to_analyze.select_dtypes(include=[np.number]).columns.tolist()
-            numeric_cols.remove('stroke') if 'stroke' in numeric_cols else None
+            st.subheader("🔗 Matrice de Corrélations")
             
-            selected_var = st.selectbox("Variable à analyser", numeric_cols)
-            fig = create_violin_plot(df_to_analyze, x='stroke', y=selected_var, color='stroke')
-            st.plotly_chart(fig, use_container_width=True)
+            # Préparer données numériques pour corrélation
+            df_processed, _ = preprocess_data(df_to_analyze)
+            
+            col1, col2 = st.columns([3, 1])
+            
+            with col2:
+                method = st.radio("**Méthode de Corrélation**", 
+                                ["pearson", "spearman"], 
+                                help="Pearson: corrélation linéaire / Spearman: corrélation monotone")
+                
+                threshold = st.slider("**Seuil de Corrélation**", 
+                                    min_value=0.0, max_value=1.0, value=0.3, step=0.1,
+                                    help="Afficher seulement les corrélations > seuil")
+            
+            with col1:
+                # Matrice de corrélation
+                corr_matrix = df_processed.corr(method=method)
+                
+                # Créer heatmap
+                fig = create_correlation_heatmap(df_processed, method=method)
+                st.plotly_chart(fig, use_container_width=True)
+            
+            # Top corrélations avec la variable cible
+            st.markdown("### 🎯 Top Corrélations avec la Variable Cible (stroke)")
+            
+            stroke_corr = corr_matrix['stroke'].drop('stroke').abs().sort_values(ascending=False)
+            
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                st.markdown("**🔥 Corrélations les Plus Fortes**")
+                top_corr_df = pd.DataFrame({
+                    'Variable': stroke_corr.head(5).index,
+                    'Corrélation': stroke_corr.head(5).values,
+                    'Force': ['Forte' if x > 0.5 else 'Modérée' if x > 0.3 else 'Faible' for x in stroke_corr.head(5).values]
+                })
+                st.dataframe(top_corr_df, use_container_width=True, hide_index=True)
+            
+            with col2:
+                st.markdown("**🔗 Corrélations Inter-Variables > 0.5**")
+                high_corr_pairs = []
+                for i in range(len(corr_matrix.columns)):
+                    for j in range(i+1, len(corr_matrix.columns)):
+                        var1, var2 = corr_matrix.columns[i], corr_matrix.columns[j]
+                        corr_val = abs(corr_matrix.iloc[i, j])
+                        if corr_val > 0.5 and var1 != 'stroke' and var2 != 'stroke':
+                            high_corr_pairs.append({'Var1': var1, 'Var2': var2, 'Corrélation': corr_val})
+                
+                if high_corr_pairs:
+                    high_corr_df = pd.DataFrame(high_corr_pairs).sort_values('Corrélation', ascending=False)
+                    st.dataframe(high_corr_df, use_container_width=True, hide_index=True)
+                else:
+                    st.info("Aucune corrélation forte (>0.5) entre variables prédictives")
+            
+            # Interprétation des corrélations
+            st.markdown("### 🧠 Interprétation des Corrélations")
             
             if data_choice == "⚖️ Données Équilibrées":
                 st.success(f"""
-                **✅ Violin Plot sur Données Équilibrées**:
-                - Classe stroke=1 (AVC) a maintenant **plus d'échantillons** → distribution plus robuste
-                - Les différences entre les deux classes sont plus **visuellement équilibrées**
-                - Meilleure représentation des **patterns de la classe minoritaire**
+                **✅ Impact de l'Équilibrage sur les Corrélations:**
+                
+                - Les corrélations avec 'stroke' sont maintenant **plus fiables** car les deux classes ont un poids équilibré
+                - La classe minoritaire (stroke=1) contribue **également** aux calculs de corrélation
+                - Les patterns peuvent être **plus prononcés** car on a plus d'exemples de la classe AVC
+                - Variables les plus corrélées: **{', '.join(stroke_corr.head(3).index)}**
                 """)
             else:
                 st.info(f"""
-                **📊 Comparaison des Distributions**:
-                - Violet plot gauche (stroke=0): ~{len(df_to_analyze[df_to_analyze['stroke']==0])} patients
-                - Violet plot droit (stroke=1): ~{len(df_to_analyze[df_to_analyze['stroke']==1])} patients
+                **📊 Corrélations sur Données Déséquilibrées:**
                 
-                ⚠️ La **forte différence de taille** rend la comparaison visuelle difficile.
+                ⚠️ **Attention**: Avec seulement {len(df_to_analyze[df_to_analyze['stroke']==1])} cas d'AVC sur {len(df_to_analyze)}, 
+                les corrélations avec 'stroke' peuvent être **sous-estimées**.
+                
+                **Variables les plus prometteuses**: **{', '.join(stroke_corr.head(3).index)}**
+                
+                💡 **Recommandation**: Refaites cette analyse après l'Étape 6 (Équilibrage) pour des résultats plus fiables.
                 """)
+        
+        with tab3:
+            st.subheader("📊 Comparaison de Distributions")
+            
+            st.info("""
+            Cette section compare les distributions de **toutes les variables numériques** entre les patients avec et sans AVC.
+            """)
+            
+            # Variables numériques
+            numeric_cols = df_to_analyze.select_dtypes(include=[np.number]).columns.tolist()
+            numeric_cols = [col for col in numeric_cols if col not in ['stroke']]
+            
+            # Type de graphique
+            chart_type = st.radio("**Type de Visualisation**", 
+                                ["📊 Histogrammes", "📈 Courbes de Densité", "📉 Box Plots Multiples"],
+                                horizontal=True)
+            
+            if chart_type == "📊 Histogrammes":
+                # Grille d'histogrammes
+                n_cols = 3
+                n_rows = (len(numeric_cols) + n_cols - 1) // n_cols
+                
+                fig = go.Figure()
+                fig = px.histogram(df_to_analyze, x=numeric_cols[0], color='stroke', 
+                                 color_discrete_map={0: '#3498db', 1: '#e74c3c'},
+                                 marginal="box", 
+                                 title="Distributions Comparées par Variable")
+                
+                # Sélection de variable spécifique
+                selected_var_dist = st.selectbox("Variable à analyser en détail", numeric_cols)
+                
+                fig_detail = go.Figure()
+                
+                # Histogrammes superposés
+                data_no_stroke = df_to_analyze[df_to_analyze['stroke'] == 0][selected_var_dist].dropna()
+                data_stroke = df_to_analyze[df_to_analyze['stroke'] == 1][selected_var_dist].dropna()
+                
+                fig_detail.add_trace(go.Histogram(
+                    x=data_no_stroke,
+                    name=f'Pas AVC (n={len(data_no_stroke)})',
+                    opacity=0.7,
+                    marker_color='#3498db',
+                    nbinsx=40
+                ))
+                
+                fig_detail.add_trace(go.Histogram(
+                    x=data_stroke,
+                    name=f'AVC (n={len(data_stroke)})',
+                    opacity=0.7,
+                    marker_color='#e74c3c',
+                    nbinsx=40
+                ))
+                
+                fig_detail.update_layout(
+                    title=f"Distribution Détaillée: {selected_var_dist}",
+                    xaxis_title=selected_var_dist,
+                    yaxis_title="Fréquence",
+                    barmode='overlay'
+                )
+                
+                st.plotly_chart(fig_detail, use_container_width=True)
+                
+            elif chart_type == "📈 Courbes de Densité":
+                # Courbes de densité pour comparaison plus smooth
+                selected_var_density = st.selectbox("Variable pour courbe de densité", numeric_cols)
+                
+                fig_density = go.Figure()
+                
+                from scipy.stats import gaussian_kde
+                
+                # Densité pour pas d'AVC
+                data_no_stroke = df_to_analyze[df_to_analyze['stroke'] == 0][selected_var_density].dropna()
+                if len(data_no_stroke) > 1:
+                    kde_no_stroke = gaussian_kde(data_no_stroke)
+                    x_range = np.linspace(data_no_stroke.min(), data_no_stroke.max(), 100)
+                    density_no_stroke = kde_no_stroke(x_range)
+                    
+                    fig_density.add_trace(go.Scatter(
+                        x=x_range,
+                        y=density_no_stroke,
+                        mode='lines',
+                        name='Pas AVC',
+                        line=dict(color='#3498db', width=3),
+                        fill='tonexty'
+                    ))
+                
+                # Densité pour AVC
+                data_stroke = df_to_analyze[df_to_analyze['stroke'] == 1][selected_var_density].dropna()
+                if len(data_stroke) > 1:
+                    kde_stroke = gaussian_kde(data_stroke)
+                    x_range_stroke = np.linspace(data_stroke.min(), data_stroke.max(), 100)
+                    density_stroke = kde_stroke(x_range_stroke)
+                    
+                    fig_density.add_trace(go.Scatter(
+                        x=x_range_stroke,
+                        y=density_stroke,
+                        mode='lines',
+                        name='AVC',
+                        line=dict(color='#e74c3c', width=3),
+                        fill='tonexty'
+                    ))
+                
+                fig_density.update_layout(
+                    title=f"Courbes de Densité: {selected_var_density}",
+                    xaxis_title=selected_var_density,
+                    yaxis_title="Densité"
+                )
+                
+                st.plotly_chart(fig_density, use_container_width=True)
+                
+            else:  # Box Plots Multiples
+                # Créer subplot avec tous les box plots
+                from plotly.subplots import make_subplots
+                
+                n_cols = 3
+                n_rows = (len(numeric_cols) + n_cols - 1) // n_cols
+                
+                fig = make_subplots(
+                    rows=n_rows, cols=n_cols,
+                    subplot_titles=numeric_cols,
+                    vertical_spacing=0.1
+                )
+                
+                for i, col in enumerate(numeric_cols):
+                    row = i // n_cols + 1
+                    col_pos = i % n_cols + 1
+                    
+                    # Box plot pour pas d'AVC
+                    fig.add_trace(
+                        go.Box(y=df_to_analyze[df_to_analyze['stroke']==0][col], 
+                               name='Pas AVC', 
+                               marker_color='#3498db',
+                               showlegend=(i==0)),
+                        row=row, col=col_pos
+                    )
+                    
+                    # Box plot pour AVC
+                    fig.add_trace(
+                        go.Box(y=df_to_analyze[df_to_analyze['stroke']==1][col], 
+                               name='AVC', 
+                               marker_color='#e74c3c',
+                               showlegend=(i==0)),
+                        row=row, col=col_pos
+                    )
+                
+                fig.update_layout(
+                    height=300*n_rows,
+                    title="Box Plots Comparatifs - Toutes Variables Numériques"
+                )
+                
+                st.plotly_chart(fig, use_container_width=True)
+        
+        with tab4:
+            st.subheader("🧠 Insights & Interprétation Globale")
+            
+            # Analyse automatique complète
+            st.markdown("### 📊 Analyse Automatique des Relations")
+            
+            # Préparer données pour analyse
+            df_processed, _ = preprocess_data(df_to_analyze)
+            corr_matrix = df_processed.corr(method='spearman')
+            stroke_corr = corr_matrix['stroke'].drop('stroke').abs().sort_values(ascending=False)
+            
+            # Top variables prédictives
+            top_predictive = stroke_corr.head(5)
+            
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                st.markdown("#### 🎯 Variables les Plus Prédictives")
+                
+                for i, (var, corr) in enumerate(top_predictive.items(), 1):
+                    if corr > 0.4:
+                        emoji = "🔥"
+                        level = "Très forte"
+                    elif corr > 0.2:
+                        emoji = "⚡"
+                        level = "Forte"
+                    else:
+                        emoji = "📊"
+                        level = "Modérée"
+                    
+                    st.write(f"{emoji} **{i}. {var}** - {level} ({corr:.3f})")
+                
+                # Recommandations
+                st.markdown("#### ✅ Recommandations")
+                
+                if len([x for x in top_predictive if x > 0.3]) >= 3:
+                    st.success("""
+                    🎯 **Excellent potentiel prédictif !**
+                    - Plusieurs variables montrent des corrélations fortes
+                    - Le modèle ML devrait avoir de bonnes performances
+                    - Continuer avec les étapes de preprocessing
+                    """)
+                elif len([x for x in top_predictive if x > 0.2]) >= 2:
+                    st.warning("""
+                    ⚠️ **Potentiel prédictif modéré**
+                    - Quelques variables prometteuses identifiées
+                    - Peut nécessiter feature engineering avancé
+                    - L'équilibrage des données sera crucial
+                    """)
+                else:
+                    st.error("""
+                    ❌ **Faible potentiel prédictif apparent**
+                    - Peu de corrélations fortes détectées
+                    - Peut-être dû au déséquilibre des classes
+                    - Essayer d'autres techniques (transformations, interactions)
+                    """)
+            
+            with col2:
+                st.markdown("#### 🔗 Patterns Inter-Variables")
+                
+                # Détecter collinéarité
+                high_corr_pairs = []
+                for i in range(len(corr_matrix.columns)):
+                    for j in range(i+1, len(corr_matrix.columns)):
+                        var1, var2 = corr_matrix.columns[i], corr_matrix.columns[j]
+                        corr_val = abs(corr_matrix.iloc[i, j])
+                        if corr_val > 0.7 and var1 != 'stroke' and var2 != 'stroke':
+                            high_corr_pairs.append((var1, var2, corr_val))
+                
+                if high_corr_pairs:
+                    st.warning("⚠️ **Collinéarité détectée** :")
+                    for var1, var2, corr_val in high_corr_pairs:
+                        st.write(f"• {var1} ↔ {var2}: {corr_val:.3f}")
+                    st.info("💡 Considérer supprimer une des variables corrélées")
+                else:
+                    st.success("✅ **Pas de collinéarité forte** entre prédicteurs")
+                
+                # Variables candidates à la suppression
+                weak_predictors = [var for var, corr in stroke_corr.items() if corr < 0.05]
+                
+                if weak_predictors:
+                    st.info("🗑️ **Variables faiblement prédictives** :")
+                    for var in weak_predictors[:3]:
+                        st.write(f"• {var} ({stroke_corr[var]:.3f})")
+            
+            # Synthèse finale
+            st.markdown("### 🎯 Synthèse de l'Analyse Bivariée")
+            
+            if data_choice == "⚖️ Données Équilibrées":
+                st.success(f"""
+                **✅ Analyse sur Données Équilibrées Complétée**
+                
+                **🔥 Top 3 Variables Prédictives:**
+                1. **{top_predictive.index[0]}** (corrélation: {top_predictive.iloc[0]:.3f})
+                2. **{top_predictive.index[1]}** (corrélation: {top_predictive.iloc[1]:.3f})
+                3. **{top_predictive.index[2]}** (corrélation: {top_predictive.iloc[2]:.3f})
+                
+                **📊 Insights Clés:**
+                - L'équilibrage a permis d'obtenir des **relations plus stables** entre variables
+                - Les patterns de la classe minoritaire (AVC) sont maintenant **mieux représentés**
+                - Les corrélations sont **plus fiables** pour la sélection de features
+                
+                **➡️ Prochaines Étapes:**
+                - Étape 7: Analyses multivariées (ACP, ACM, AFD)
+                - Étape 8: Modélisation ML avec features sélectionnées
+                """)
+            else:
+                total_stroke = len(df_to_analyze[df_to_analyze['stroke']==1])
+                st.info(f"""
+                **📊 Analyse sur Données Originales (Déséquilibrées) Complétée**
+                
+                **🔥 Top 3 Variables Prédictives Potentielles:**
+                1. **{top_predictive.index[0]}** (corrélation: {top_predictive.iloc[0]:.3f})
+                2. **{top_predictive.index[1]}** (corrélation: {top_predictive.iloc[1]:.3f})
+                3. **{top_predictive.index[2]}** (corrélation: {top_predictive.iloc[2]:.3f})
+                
+                ⚠️ **Limitations identifiées:**
+                - Seulement **{total_stroke} cas d'AVC** sur {len(df_to_analyze)} patients (déséquilibre)
+                - Les corrélations peuvent être **sous-estimées**
+                - Les patterns de la classe minoritaire sont **difficiles à détecter**
+                
+                **➡️ Actions Recommandées:**
+                1. **Étape 4**: Prétraitement (imputation valeurs manquantes)
+                2. **Étape 5**: Transformations (normalisation, scaling)
+                3. **Étape 6**: **Équilibrage SMOTE/ADASYN** (CRITIQUE!)
+                4. Revenir à cette analyse pour valider les patterns
+                """)
+            
+            # Alerte si déséquilibre important
+            if data_choice != "⚖️ Données Équilibrées":
+                stroke_ratio = len(df_to_analyze[df_to_analyze['stroke']==1]) / len(df_to_analyze)
+                if stroke_ratio < 0.1:
+                    st.error(f"""
+                    🚨 **ALERTE: Déséquilibre Critique** ({stroke_ratio:.1%} d'AVC)
+                    
+                    Les analyses bivariées actuelles sont **peu fiables** à cause du déséquilibre extrême.
+                    
+                    **Action URGENTE:** Passez à l'Étape 6 (Équilibrage) avant de continuer l'analyse !
+                    """)
     
     # === PAGE: FEATURE ENGINEERING ===
     # === PAGE: PRÉTRAITEMENT DES DONNÉES ===
@@ -2747,27 +3343,195 @@ def main():
             st.info(f"📌 **Recommandation**: Utiliser **{n_for_80} composantes** pour conserver ≥ 80% de l'information")
         
         with tab2:
-            st.subheader("Projection des Patients sur PC1 et PC2")
+            st.subheader("🎯 Projection des Individus sur les Composantes Principales")
             
+            # Options d'affichage
+            col1, col2, col3 = st.columns(3)
+            
+            with col1:
+                pc_x = st.selectbox("Axe X", [f'PC{i+1}' for i in range(n_components)], index=0, key="pc_x")
+            with col2:
+                pc_y = st.selectbox("Axe Y", [f'PC{i+1}' for i in range(n_components)], index=1, key="pc_y")
+            with col3:
+                show_density = st.checkbox("Afficher densité", value=False)
+            
+            # Extraire les indices des composantes
+            idx_x = int(pc_x[2:]) - 1
+            idx_y = int(pc_y[2:]) - 1
+            
+            # Créer DataFrame pour projection
             pca_df = pd.DataFrame({
-                'PC1': X_pca[:, 0],
-                'PC2': X_pca[:, 1],
-                'stroke': y.values
+                pc_x: X_pca[:, idx_x],
+                pc_y: X_pca[:, idx_y],
+                'stroke': y.values,
+                'stroke_label': y.map({0: 'Pas AVC', 1: 'AVC'})
             })
             
-            fig = px.scatter(pca_df, x='PC1', y='PC2', color='stroke',
-                           title='Projection ACP - Patients (2D)',
-                           color_discrete_map={0: '#10b981', 1: '#ef4444'},
-                           labels={'stroke': 'AVC'},
-                           opacity=0.6, hover_data={'PC1': ':.2f', 'PC2': ':.2f'})
+            # Graphique principal
+            if show_density:
+                # Graphique avec densité marginale
+                fig = px.density_contour(pca_df, x=pc_x, y=pc_y, color='stroke_label',
+                                       title=f'Projection des Individus - {pc_x} vs {pc_y} (avec densité)',
+                                       color_discrete_map={'Pas AVC': '#10b981', 'AVC': '#ef4444'},
+                                       marginal_x="histogram", marginal_y="histogram")
+                
+                # Ajouter les points
+                for stroke_val, color, label in [(0, '#10b981', 'Pas AVC'), (1, '#ef4444', 'AVC')]:
+                    data_subset = pca_df[pca_df['stroke'] == stroke_val]
+                    fig.add_trace(go.Scatter(
+                        x=data_subset[pc_x],
+                        y=data_subset[pc_y],
+                        mode='markers',
+                        name=label,
+                        marker=dict(color=color, size=4, opacity=0.6),
+                        showlegend=True
+                    ))
+            else:
+                # Graphique scatter standard amélioré
+                fig = px.scatter(pca_df, x=pc_x, y=pc_y, color='stroke_label',
+                               title=f'Projection des Individus - {pc_x} vs {pc_y}',
+                               color_discrete_map={'Pas AVC': '#10b981', 'AVC': '#ef4444'},
+                               opacity=0.7, size_max=15,
+                               hover_data={pc_x: ':.2f', pc_y: ':.2f'},
+                               labels={'stroke_label': 'Classe'})
+                
+                # Ajouter ellipses de confiance pour chaque groupe
+                from scipy.stats import chi2
+                
+                for stroke_val, color, label in [(0, '#10b981', 'Pas AVC'), (1, '#ef4444', 'AVC')]:
+                    data_subset = pca_df[pca_df['stroke'] == stroke_val]
+                    if len(data_subset) > 10:  # Assez de points pour ellipse
+                        # Calculer ellipse de confiance 95%
+                        data_points = data_subset[[pc_x, pc_y]].values
+                        center = np.mean(data_points, axis=0)
+                        cov = np.cov(data_points.T)
+                        
+                        # Valeurs propres et vecteurs propres
+                        eigenvals, eigenvecs = np.linalg.eigh(cov)
+                        
+                        # Chi2 pour 95% confidence avec 2 degrés de liberté
+                        chi2_val = chi2.ppf(0.95, 2)
+                        
+                        # Paramètres ellipse
+                        a = np.sqrt(chi2_val * eigenvals[1])  # Grand axe
+                        b = np.sqrt(chi2_val * eigenvals[0])  # Petit axe
+                        angle = np.degrees(np.arctan2(eigenvecs[1, 1], eigenvecs[0, 1]))
+                        
+                        # Créer ellipse
+                        t = np.linspace(0, 2*np.pi, 100)
+                        ellipse_x = center[0] + a * np.cos(t) * np.cos(np.radians(angle)) - b * np.sin(t) * np.sin(np.radians(angle))
+                        ellipse_y = center[1] + a * np.cos(t) * np.sin(np.radians(angle)) + b * np.sin(t) * np.cos(np.radians(angle))
+                        
+                        fig.add_trace(go.Scatter(
+                            x=ellipse_x, y=ellipse_y,
+                            mode='lines',
+                            name=f'Ellipse 95% - {label}',
+                            line=dict(color=color, dash='dash', width=2),
+                            showlegend=True
+                        ))
+            
+            # Améliorer le layout
+            fig.update_layout(
+                xaxis_title=f'{pc_x} ({explained_var[idx_x]:.1f}% de variance)',
+                yaxis_title=f'{pc_y} ({explained_var[idx_y]:.1f}% de variance)',
+                width=800, height=600,
+                xaxis=dict(zeroline=True, zerolinecolor='lightgray'),
+                yaxis=dict(zeroline=True, zerolinecolor='lightgray')
+            )
+            
             st.plotly_chart(fig, use_container_width=True)
             
-            st.info("""
-            **💡 Interprétation**:
-            - Chaque **point** = 1 patient
-            - **Couleur verte** = Pas d'AVC (classe 0)
-            - **Couleur rouge** = AVC (classe 1)
-            - **Séparation** : Si les classes sont bien séparées → ACP utile pour classification
+            # Statistiques par groupe
+            st.markdown("### 📊 Statistiques des Groupes")
+            
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                st.write(f"**Groupe Pas AVC** (n={len(pca_df[pca_df['stroke']==0])})")
+                stats_no_stroke = pca_df[pca_df['stroke']==0][[pc_x, pc_y]].describe()
+                st.dataframe(stats_no_stroke.round(3), use_container_width=True)
+            
+            with col2:
+                st.write(f"**Groupe AVC** (n={len(pca_df[pca_df['stroke']==1])})")
+                stats_stroke = pca_df[pca_df['stroke']==1][[pc_x, pc_y]].describe()
+                st.dataframe(stats_stroke.round(3), use_container_width=True)
+            
+            # Analyse de séparation
+            st.markdown("### 🎯 Analyse de Séparation des Classes")
+            
+            # Calculer distance entre centres
+            center_no_stroke = pca_df[pca_df['stroke']==0][[pc_x, pc_y]].mean()
+            center_stroke = pca_df[pca_df['stroke']==1][[pc_x, pc_y]].mean()
+            distance_centers = np.linalg.norm(center_stroke - center_no_stroke)
+            
+            # Calculer variance intra-classe moyenne
+            var_no_stroke = pca_df[pca_df['stroke']==0][[pc_x, pc_y]].var().mean()
+            var_stroke = pca_df[pca_df['stroke']==1][[pc_x, pc_y]].var().mean()
+            var_intra = (var_no_stroke + var_stroke) / 2
+            
+            # Ratio de séparation
+            separation_ratio = distance_centers / np.sqrt(var_intra) if var_intra > 0 else 0
+            
+            col1, col2, col3 = st.columns(3)
+            
+            with col1:
+                st.metric("Distance entre centres", f"{distance_centers:.2f}")
+            with col2:
+                st.metric("Variance intra-classe", f"{var_intra:.2f}")
+            with col3:
+                st.metric("Ratio de séparation", f"{separation_ratio:.2f}")
+            
+            # Interprétation du ratio de séparation
+            if separation_ratio > 2.0:
+                st.success("✅ **Excellente séparation** : Les classes sont bien distinctes dans cet espace")
+            elif separation_ratio > 1.0:
+                st.info("📊 **Séparation modérée** : Classes partiellement séparées")
+            else:
+                st.warning("⚠️ **Faible séparation** : Classes se chevauchent beaucoup")
+            
+            # Points les plus contributifs
+            st.markdown("### 🎪 Points Remarquables")
+            
+            # Points extrêmes sur PC1 et PC2
+            extreme_points = pd.DataFrame()
+            
+            # Points extrêmes PC1
+            idx_min_pc1 = pca_df[pc_x].idxmin()
+            idx_max_pc1 = pca_df[pc_x].idxmax()
+            
+            # Points extrêmes PC2  
+            idx_min_pc2 = pca_df[pc_y].idxmin()
+            idx_max_pc2 = pca_df[pc_y].idxmax()
+            
+            extreme_indices = [idx_min_pc1, idx_max_pc1, idx_min_pc2, idx_max_pc2]
+            extreme_labels = [f'{pc_x} min', f'{pc_x} max', f'{pc_y} min', f'{pc_y} max']
+            
+            for idx, label in zip(extreme_indices, extreme_labels):
+                extreme_points = pd.concat([extreme_points, pd.DataFrame({
+                    'Type': [label],
+                    'Patient ID': [idx],
+                    pc_x: [pca_df.loc[idx, pc_x]],
+                    pc_y: [pca_df.loc[idx, pc_y]], 
+                    'Classe': [pca_df.loc[idx, 'stroke_label']]
+                })], ignore_index=True)
+            
+            st.dataframe(extreme_points, use_container_width=True, hide_index=True)
+            
+            st.info(f"""
+            **💡 Interprétation de la Projection des Individus**:
+            
+            🎯 **Chaque point représente un patient** projeté sur les axes {pc_x} et {pc_y}
+            
+            📊 **Analyse spatiale**:
+            - **Distance entre centres** : {distance_centers:.2f} (plus élevé = meilleure séparation)
+            - **Variance expliquée** : {pc_x} ({explained_var[idx_x]:.1f}%) + {pc_y} ({explained_var[idx_y]:.1f}%) = **{explained_var[idx_x] + explained_var[idx_y]:.1f}%** total
+            
+            🔍 **Pour le Machine Learning**:
+            - Si les classes sont **bien séparées** → Classification plus facile
+            - Si **chevauchement important** → Besoin d'autres techniques (features engineering, modèles non-linéaires)
+            - **Points isolés** peuvent être des outliers ou des cas particuliers
+            
+            🎨 **Conseil**: Testez différentes combinaisons de composantes (PC1-PC3, PC2-PC3, etc.)
             """)
         
         with tab3:
@@ -2969,7 +3733,15 @@ def main():
             method_name = st.session_state.workflow_data.get('balancing_method', 'Inconnu')
             st.success(f"✅ **ACM sur données équilibrées** ({method_name}) - {len(df_for_acm):,} exemples")
         
+        # === Configuration des Variables et Sous-groupes ===
         categorical_cols = ['gender', 'ever_married', 'work_type', 'Residence_type', 'smoking_status']
+        
+        # Définition des sous-groupes thématiques
+        variable_groups = {
+            'Profil Personnel': ['gender', 'ever_married'],
+            'Profil Socio-économique': ['work_type', 'Residence_type'],
+            'Habitudes de Vie': ['smoking_status']
+        }
         
         # Vérifier que toutes les colonnes existent
         missing_cols = [col for col in categorical_cols + ['stroke'] if col not in df_for_acm.columns]
@@ -2983,57 +3755,969 @@ def main():
         
         df_cat = df_for_acm[categorical_cols + ['stroke']].copy()
         
-        st.info(f"""
-        **L'ACM** analyse les relations entre variables catégorielles.
+        # Gestion de la mémoire et échantillonnage
+        st.markdown("### 🎛️ Configuration de l'Analyse ACM")
         
-        📊 Dataset utilisé pour ACM: {len(df_cat):,} exemples
+        # Calcul de la taille estimée de l'encodage disjonctif
+        n_modalities = sum([df_cat[col].nunique() for col in categorical_cols])
+        estimated_size_mb = (len(df_cat) * n_modalities * 8) / (1024 * 1024)  # 8 bytes pour float64
+        
+        if estimated_size_mb > 500:  # Plus de 500 MB
+            st.warning(f"""
+            ⚠️ **Dataset volumineux détecté** 
+            - Taille estimée: {estimated_size_mb:.0f} MB
+            - Modalités totales: {n_modalities}
+            
+            Un échantillonnage stratifié sera appliqué pour optimiser les performances.
+            """)
+            use_sampling = True
+            sample_size = min(5000, len(df_cat))  # Maximum 5000 exemples
+        else:
+            use_sampling = False
+            sample_size = len(df_cat)
+        
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            analysis_type = st.selectbox(
+                "Type d'analyse",
+                ["ACM avec Projections", "ACM par Sous-groupes", "ACM Comparative"],
+                index=0
+            )
+        
+        with col2:
+            n_components_acm = st.slider("Nombre de dimensions", 2, 5, 3)
+        
+        with col3:
+            if use_sampling:
+                sample_size = st.slider("Taille échantillon", 1000, min(10000, len(df_cat)), sample_size)
+        
+        # Échantillonnage stratifié si nécessaire
+        if use_sampling:
+            from sklearn.model_selection import train_test_split
+            df_sample, _ = train_test_split(
+                df_cat, 
+                test_size=1 - sample_size/len(df_cat), 
+                stratify=df_cat['stroke'], 
+                random_state=42
+            )
+            df_cat_analysis = df_sample
+            st.info(f"📊 Échantillon stratifié utilisé: {len(df_cat_analysis):,} exemples")
+        else:
+            df_cat_analysis = df_cat
+        
+        st.info(f"""
+        **Configuration ACM**:
+        - 📊 Dataset: {len(df_cat_analysis):,} exemples
+        - 🏷️ Variables catégorielles: {len(categorical_cols)} 
+        - 📐 Dimensions extraites: {n_components_acm}
+        - 🎯 Type: {analysis_type}
+        - 💾 Modalités totales: {n_modalities}
         """)
         
         try:
-            mca = prince.MCA(n_components=3, random_state=42)
-            mca_result = mca.fit_transform(df_cat[categorical_cols])
-            
-            # Vérifier que le résultat est valide
-            if mca_result is None or len(mca_result.columns) < 2:
-                st.error("Erreur: ACM n'a pas pu générer de résultats valides. Vérifiez que les données catégorielles sont correctement encodées.")
-            else:
-                tab1, tab2 = st.tabs(["🎯 Projection Individus", "📊 Modalités"])
+            if analysis_type == "ACM avec Projections":
+                # === ACM AVEC PROJECTIONS OPTIMISÉES ===
                 
-                with tab1:
-                    mca_df = pd.DataFrame({
-                        'Dim1': mca_result[0].values,
-                        'Dim2': mca_result[1].values,
-                        'stroke': df_cat['stroke'].values
+                # Configuration MCA optimisée pour éviter les problèmes mémoire
+                mca = prince.MCA(
+                    n_components=n_components_acm, 
+                    random_state=42,
+                    engine='sklearn',  # Plus stable
+                    copy=False  # Économise la mémoire
+                )
+                
+                # Progress bar pour l'entraînement
+                with st.spinner("🔄 Entraînement ACM en cours..."):
+                    mca_result = mca.fit_transform(df_cat_analysis[categorical_cols])
+                
+                if mca_result is None or len(mca_result.columns) < 2:
+                    st.error("Erreur: ACM n'a pas pu générer de résultats valides.")
+                else:
+                    # Calcul des métriques
+                    explained_variance = mca.eigenvalues_[:n_components_acm]
+                    total_inertia = explained_variance.sum()
+                    
+                    tab1, tab2, tab3, tab4 = st.tabs([
+                        "🎯 Projections Individus", 
+                        "🌟 Projections Modalités", 
+                        "📈 Biplot Interactif", 
+                        "🔍 Analyse Qualité"
+                    ])
+                    
+                    with tab1:
+                        st.subheader("🎯 Projections des Individus")
+                        
+                        # Sélection des axes et options
+                        col1, col2, col3, col4 = st.columns(4)
+                        
+                        with col1:
+                            dim_x = st.selectbox("Axe X", [f'Dim{i+1}' for i in range(n_components_acm)], index=0, key="acm_proj_dimx")
+                        with col2:
+                            dim_y = st.selectbox("Axe Y", [f'Dim{i+1}' for i in range(n_components_acm)], index=1, key="acm_proj_dimy")
+                        with col3:
+                            color_by = st.selectbox("Colorer par", ['stroke'] + categorical_cols, index=0, key="acm_color")
+                        with col4:
+                            show_ellipses = st.checkbox("Ellipses confiance", value=True)
+                        
+                        # Extraire indices
+                        idx_x = int(dim_x[3:]) - 1
+                        idx_y = int(dim_y[3:]) - 1
+                        
+                        # Créer DataFrame projection
+                        mca_df = pd.DataFrame({
+                            dim_x: mca_result[idx_x].values,
+                            dim_y: mca_result[idx_y].values,
+                            'stroke': df_cat_analysis['stroke'].values
+                        })
+                        
+                        # Ajouter variables catégorielles
+                        for col in categorical_cols:
+                            mca_df[col] = df_cat_analysis[col].values
+                        
+                        # Graphique principal
+                        if color_by == 'stroke':
+                            fig = px.scatter(
+                                mca_df, x=dim_x, y=dim_y, color='stroke',
+                                title=f'Projection ACM Individus - {dim_x} vs {dim_y}',
+                                color_discrete_map={0: '#10b981', 1: '#ef4444'},
+                                labels={'stroke': 'AVC'},
+                                opacity=0.6
+                            )
+                        else:
+                            fig = px.scatter(
+                                mca_df, x=dim_x, y=dim_y, color=color_by,
+                                title=f'Projection ACM - {dim_x} vs {dim_y} (par {color_by})',
+                                opacity=0.6
+                            )
+                        
+                        # Ajouter ellipses de confiance si demandé
+                        if show_ellipses and color_by == 'stroke':
+                            from scipy.stats import chi2
+                            
+                            for stroke_val, color, name in [(0, '#10b981', 'Pas AVC'), (1, '#ef4444', 'AVC')]:
+                                subset = mca_df[mca_df['stroke'] == stroke_val]
+                                if len(subset) > 10:
+                                    # Calculer ellipse 95%
+                                    points = subset[[dim_x, dim_y]].values
+                                    center = np.mean(points, axis=0)
+                                    cov = np.cov(points.T)
+                                    
+                                    eigenvals, eigenvecs = np.linalg.eigh(cov)
+                                    chi2_val = chi2.ppf(0.95, 2)
+                                    
+                                    a = np.sqrt(chi2_val * eigenvals[1])
+                                    b = np.sqrt(chi2_val * eigenvals[0])
+                                    angle = np.degrees(np.arctan2(eigenvecs[1, 1], eigenvecs[0, 1]))
+                                    
+                                    t = np.linspace(0, 2*np.pi, 100)
+                                    ellipse_x = center[0] + a * np.cos(t) * np.cos(np.radians(angle)) - b * np.sin(t) * np.sin(np.radians(angle))
+                                    ellipse_y = center[1] + a * np.cos(t) * np.sin(np.radians(angle)) + b * np.sin(t) * np.cos(np.radians(angle))
+                                    
+                                    fig.add_trace(go.Scatter(
+                                        x=ellipse_x, y=ellipse_y,
+                                        mode='lines', name=f'Confiance 95% - {name}',
+                                        line=dict(color=color, dash='dash', width=2)
+                                    ))
+                        
+                        # Améliorer layout
+                        fig.update_layout(
+                            xaxis_title=f'{dim_x} ({explained_variance[idx_x]/total_inertia*100:.1f}% inertie)',
+                            yaxis_title=f'{dim_y} ({explained_variance[idx_y]/total_inertia*100:.1f}% inertie)',
+                            width=800, height=600,
+                            xaxis=dict(zeroline=True, zerolinecolor='lightgray'),
+                            yaxis=dict(zeroline=True, zerolinecolor='lightgray')
+                        )
+                        
+                        st.plotly_chart(fig, use_container_width=True)
+                        
+                        # Statistiques projections
+                        st.markdown("#### 📊 Statistiques des Projections")
+                        
+                        col1, col2 = st.columns(2)
+                        
+                        with col1:
+                            center_no_stroke = mca_df[mca_df['stroke']==0][[dim_x, dim_y]].mean()
+                            st.metric("Centre Pas AVC", f"({center_no_stroke[dim_x]:.2f}, {center_no_stroke[dim_y]:.2f})")
+                            
+                        with col2:
+                            center_stroke = mca_df[mca_df['stroke']==1][[dim_x, dim_y]].mean()
+                            st.metric("Centre AVC", f"({center_stroke[dim_x]:.2f}, {center_stroke[dim_y]:.2f})")
+                        
+                        # Distance entre centres
+                        distance_centers = np.linalg.norm(center_stroke - center_no_stroke)
+                        st.metric("Distance entre centres", f"{distance_centers:.3f}")
+                        
+                        # Variance par groupe
+                        var_no_stroke = mca_df[mca_df['stroke']==0][[dim_x, dim_y]].var().mean()
+                        var_stroke = mca_df[mca_df['stroke']==1][[dim_x, dim_y]].var().mean()
+                        separation_ratio = distance_centers / np.sqrt((var_no_stroke + var_stroke) / 2)
+                        
+                        if separation_ratio > 1.5:
+                            st.success(f"✅ **Excellente séparation** (ratio: {separation_ratio:.2f})")
+                        elif separation_ratio > 0.8:
+                            st.info(f"📊 **Séparation modérée** (ratio: {separation_ratio:.2f})")
+                        else:
+                            st.warning(f"⚠️ **Faible séparation** (ratio: {separation_ratio:.2f})")
+                    
+                    with tab2:
+                        st.subheader("🌟 Projections des Modalités")
+                        
+                        # Options pour modalités
+                        col1, col2, col3 = st.columns(3)
+                        
+                        with col1:
+                            mod_dim_x = st.selectbox("Axe X", [f'Dim{i+1}' for i in range(n_components_acm)], index=0, key="mod_dimx")
+                        with col2:
+                            mod_dim_y = st.selectbox("Axe Y", [f'Dim{i+1}' for i in range(n_components_acm)], index=1, key="mod_dimy")
+                        with col3:
+                            show_contrib_filter = st.checkbox("Filtrer par contribution", value=True)
+                        
+                        mod_idx_x = int(mod_dim_x[3:]) - 1
+                        mod_idx_y = int(mod_dim_y[3:]) - 1
+                        
+                        # Coordonnées modalités
+                        with st.spinner("🔄 Calcul coordonnées modalités..."):
+                            column_coords = mca.column_coordinates(df_cat_analysis[categorical_cols])
+                        
+                        # Graphique modalités
+                        fig_mod = go.Figure()
+                        
+                        # Couleurs distinctives par variable
+                        colors = ['#ef4444', '#10b981', '#3b82f6', '#f59e0b', '#8b5cf6', '#06b6d4']
+                        
+                        for i, var in enumerate(categorical_cols):
+                            var_modalities = column_coords.loc[column_coords.index.str.startswith(f"{var}_")]
+                            
+                            if show_contrib_filter:
+                                # Calculer contributions et filtrer
+                                contrib_x = (var_modalities[mod_idx_x]**2 / explained_variance[mod_idx_x]) * 100
+                                contrib_y = (var_modalities[mod_idx_y]**2 / explained_variance[mod_idx_y]) * 100
+                                contrib_total = contrib_x + contrib_y
+                                var_modalities = var_modalities[contrib_total >= 5]  # Seuil 5%
+                            
+                            if len(var_modalities) > 0:
+                                modalites = var_modalities.index.str.replace(f"{var}_", "")
+                                
+                                # Calculer taille points basée sur contribution
+                                contrib_sizes = []
+                                for _, mod_row in var_modalities.iterrows():
+                                    contrib = ((mod_row[mod_idx_x]**2 / explained_variance[mod_idx_x]) + 
+                                             (mod_row[mod_idx_y]**2 / explained_variance[mod_idx_y])) * 100
+                                    contrib_sizes.append(max(8, min(20, contrib)))
+                                
+                                fig_mod.add_trace(go.Scatter(
+                                    x=var_modalities[mod_idx_x],
+                                    y=var_modalities[mod_idx_y],
+                                    mode='markers+text',
+                                    name=var,
+                                    text=modalites,
+                                    textposition='top center',
+                                    marker=dict(
+                                        size=contrib_sizes,
+                                        color=colors[i % len(colors)],
+                                        line=dict(width=1, color='white')
+                                    ),
+                                    hovertemplate=
+                                        f'<b>{var}</b><br>' +
+                                        f'{mod_dim_x}: %{{x:.3f}}<br>' +
+                                        f'{mod_dim_y}: %{{y:.3f}}<br>' +
+                                        '<extra></extra>'
+                                ))
+                        
+                        # Ajouter cercle de corrélation
+                        theta = np.linspace(0, 2*np.pi, 100)
+                        circle_x = np.cos(theta)
+                        circle_y = np.sin(theta)
+                        
+                        fig_mod.add_trace(go.Scatter(
+                            x=circle_x, y=circle_y,
+                            mode='lines',
+                            name='Cercle corrélation',
+                            line=dict(color='gray', dash='dot'),
+                            showlegend=False
+                        ))
+                        
+                        fig_mod.update_layout(
+                            title=f'Projection Modalités ACM - {mod_dim_x} vs {mod_dim_y}',
+                            xaxis_title=f'{mod_dim_x} ({explained_variance[mod_idx_x]/total_inertia*100:.1f}%)',
+                            yaxis_title=f'{mod_dim_y} ({explained_variance[mod_idx_y]/total_inertia*100:.1f}%)',
+                            width=900, height=700,
+                            xaxis=dict(zeroline=True, zerolinecolor='lightgray', range=[-1.2, 1.2]),
+                            yaxis=dict(zeroline=True, zerolinecolor='lightgray', range=[-1.2, 1.2])
+                        )
+                        
+                        st.plotly_chart(fig_mod, use_container_width=True)
+                        
+                        # Tableau contributions modalités
+                        st.markdown("#### 📋 Top Modalités par Contribution")
+                        
+                        contrib_data = []
+                        for var in categorical_cols:
+                            var_modalities = column_coords.loc[column_coords.index.str.startswith(f"{var}_")]
+                            for mod_name, mod_coords in var_modalities.iterrows():
+                                for dim_idx in range(n_components_acm):
+                                    contrib = (mod_coords[dim_idx]**2 / explained_variance[dim_idx]) * 100
+                                    contrib_data.append({
+                                        'Variable': var,
+                                        'Modalité': mod_name.replace(f"{var}_", ""),
+                                        'Dimension': f'Dim{dim_idx+1}',
+                                        'Contribution (%)': contrib,
+                                        'Coordonnée': mod_coords[dim_idx]
+                                    })
+                        
+                        contrib_df = pd.DataFrame(contrib_data)
+                        
+                        # Affichage par dimension
+                        for dim_idx in range(min(2, n_components_acm)):
+                            st.write(f"**Top Modalités - Dimension {dim_idx+1}**")
+                            top_contrib = contrib_df[contrib_df['Dimension'] == f'Dim{dim_idx+1}'].nlargest(8, 'Contribution (%)')
+                            st.dataframe(
+                                top_contrib[['Variable', 'Modalité', 'Contribution (%)', 'Coordonnée']], 
+                                use_container_width=True, hide_index=True
+                            )
+                    
+                    with tab3:
+                        st.subheader("📈 Biplot Interactif ACM")
+                        
+                        # Biplot combinant individus et modalités
+                        fig_biplot = go.Figure()
+                        
+                        # Ajouter individus avec transparence
+                        fig_biplot.add_trace(go.Scatter(
+                            x=mca_df[dim_x],
+                            y=mca_df[dim_y],
+                            mode='markers',
+                            name='Individus',
+                            marker=dict(
+                                size=4,
+                                color=mca_df['stroke'],
+                                colorscale=[[0, '#10b981'], [1, '#ef4444']],
+                                opacity=0.4
+                            ),
+                            showlegend=True
+                        ))
+                        
+                        # Ajouter modalités
+                        for i, var in enumerate(categorical_cols):
+                            var_modalities = column_coords.loc[column_coords.index.str.startswith(f"{var}_")]
+                            modalites = var_modalities.index.str.replace(f"{var}_", "")
+                            
+                            # Ajuster échelle des modalités (facteur 2 pour visibilité)
+                            scale_factor = 2
+                            
+                            fig_biplot.add_trace(go.Scatter(
+                                x=var_modalities[idx_x] * scale_factor,
+                                y=var_modalities[idx_y] * scale_factor,
+                                mode='markers+text',
+                                name=f'{var} (modalités)',
+                                text=modalites,
+                                textposition='top center',
+                                marker=dict(
+                                    size=15,
+                                    color=colors[i % len(colors)],
+                                    symbol='diamond',
+                                    line=dict(width=2, color='white')
+                                ),
+                                hovertemplate=f'<b>{var}</b><br>%{{text}}<extra></extra>'
+                            ))
+                        
+                        fig_biplot.update_layout(
+                            title=f'Biplot ACM - Individus et Modalités',
+                            xaxis_title=f'{dim_x} ({explained_variance[idx_x]/total_inertia*100:.1f}%)',
+                            yaxis_title=f'{dim_y} ({explained_variance[idx_y]/total_inertia*100:.1f}%)',
+                            width=900, height=700,
+                            xaxis=dict(zeroline=True, zerolinecolor='lightgray'),
+                            yaxis=dict(zeroline=True, zerolinecolor='lightgray')
+                        )
+                        
+                        st.plotly_chart(fig_biplot, use_container_width=True)
+                        
+                        st.info("""
+                        **💡 Lecture du Biplot**:
+                        - **Points colorés** : Individus (vert=Pas AVC, rouge=AVC)
+                        - **Losanges étiquetés** : Modalités des variables
+                        - **Proximité** : Individus proches ont des profils similaires
+                        - **Direction** : Modalités dans la même direction sont associées
+                        """)
+                    
+                    with tab4:
+                        st.subheader("🔍 Analyse de Qualité ACM")
+                        
+                        # Métriques globales
+                        col1, col2, col3, col4 = st.columns(4)
+                        
+                        with col1:
+                            st.metric("Inertie totale", f"{total_inertia:.3f}")
+                        with col2:
+                            st.metric("Dim1+Dim2 (%)", f"{(explained_variance[0]+explained_variance[1])/total_inertia*100:.1f}")
+                        with col3:
+                            st.metric("Modalités", f"{column_coords.shape[0]}")
+                        with col4:
+                            st.metric("Variables", f"{len(categorical_cols)}")
+                        
+                        # Graphique inertie par dimension
+                        inertia_df = pd.DataFrame({
+                            'Dimension': [f'Dim{i+1}' for i in range(n_components_acm)],
+                            'Inertie': explained_variance,
+                            'Pourcentage': explained_variance / total_inertia * 100,
+                            'Cumul': np.cumsum(explained_variance) / total_inertia * 100
+                        })
+                        
+                        fig_inertia = go.Figure()
+                        
+                        # Barres inertie
+                        fig_inertia.add_trace(go.Bar(
+                            x=inertia_df['Dimension'],
+                            y=inertia_df['Pourcentage'],
+                            name='Inertie (%)',
+                            marker_color='lightblue'
+                        ))
+                        
+                        # Ligne cumul
+                        fig_inertia.add_trace(go.Scatter(
+                            x=inertia_df['Dimension'],
+                            y=inertia_df['Cumul'],
+                            mode='lines+markers',
+                            name='Cumul (%)',
+                            yaxis='y2',
+                            line=dict(color='red', width=3)
+                        ))
+                        
+                        fig_inertia.update_layout(
+                            title='Inertie Expliquée par Dimension',
+                            xaxis_title='Dimensions',
+                            yaxis_title='Inertie (%)',
+                            yaxis2=dict(
+                                title='Cumul (%)',
+                                overlaying='y',
+                                side='right'
+                            ),
+                            width=800, height=400
+                        )
+                        
+                        st.plotly_chart(fig_inertia, use_container_width=True)
+                        
+                        # Qualité représentation variables
+                        st.markdown("#### 🎯 Qualité Représentation Variables")
+                        
+                        var_quality = []
+                        for var in categorical_cols:
+                            var_modalities = column_coords.loc[column_coords.index.str.startswith(f"{var}_")]
+                            
+                            # Qualité = somme carrés coordonnées sur dimensions principales
+                            quality_dim1 = (var_modalities[0]**2).mean()
+                            quality_dim2 = (var_modalities[1]**2).mean() if n_components_acm > 1 else 0
+                            quality_total = quality_dim1 + quality_dim2
+                            
+                            var_quality.append({
+                                'Variable': var,
+                                'Qualité Dim1': quality_dim1,
+                                'Qualité Dim2': quality_dim2,
+                                'Qualité Totale': quality_total,
+                                'Nb Modalités': len(var_modalities)
+                            })
+                        
+                        quality_df = pd.DataFrame(var_quality)
+                        quality_df = quality_df.sort_values('Qualité Totale', ascending=False)
+                        
+                        st.dataframe(quality_df, use_container_width=True, hide_index=True)
+                        
+                        # Recommandations
+                        best_var = quality_df.iloc[0]['Variable']
+                        worst_var = quality_df.iloc[-1]['Variable']
+                        
+                        st.success(f"✅ **Meilleure représentation**: **{best_var}** (qualité: {quality_df.iloc[0]['Qualité Totale']:.3f})")
+                        st.warning(f"⚠️ **Représentation faible**: **{worst_var}** (qualité: {quality_df.iloc[-1]['Qualité Totale']:.3f})")
+                        
+                        if quality_df.iloc[0]['Qualité Totale'] > 0.5:
+                            st.info("""
+                            📊 **Analyse de bonne qualité**: Les premières dimensions capturent bien la structure des données catégorielles.
+                            """)
+                        else:
+                            st.warning("""
+                            ⚠️ **Qualité modérée**: Considérez d'augmenter le nombre de dimensions ou de regrouper certaines modalités rares.
+                            """)
+
+            elif analysis_type == "ACM par Sous-groupes":
+                # === ACM GLOBALE ===
+                mca = prince.MCA(n_components=n_components_acm, random_state=42)
+                mca_result = mca.fit_transform(df_cat[categorical_cols])
+                
+                if mca_result is None or len(mca_result.columns) < 2:
+                    st.error("Erreur: ACM n'a pas pu générer de résultats valides.")
+                else:
+                    # Calcul des métriques
+                    explained_variance = mca.eigenvalues_[:n_components_acm]
+                    total_inertia = explained_variance.sum()
+                    
+                    tab1, tab2, tab3, tab4 = st.tabs([
+                        "🎯 Projection Individus", 
+                        "📊 Analyse des Modalités", 
+                        "📈 Contributions", 
+                        "🔍 Tendances Modalités"
+                    ])
+                    
+                    with tab1:
+                        st.subheader("🎯 Projection des Individus")
+                        
+                        # Options de visualisation
+                        col1, col2, col3 = st.columns(3)
+                        
+                        with col1:
+                            dim_x = st.selectbox("Axe X", [f'Dim{i+1}' for i in range(n_components_acm)], index=0, key="acm_dimx")
+                        with col2:
+                            dim_y = st.selectbox("Axe Y", [f'Dim{i+1}' for i in range(n_components_acm)], index=1, key="acm_dimy")
+                        with col3:
+                            color_by = st.selectbox("Colorer par", ['stroke'] + categorical_cols, index=0)
+                        
+                        # Extraire indices
+                        idx_x = int(dim_x[3:]) - 1
+                        idx_y = int(dim_y[3:]) - 1
+                        
+                        # Créer DataFrame
+                        mca_df = pd.DataFrame({
+                            dim_x: mca_result[idx_x].values,
+                            dim_y: mca_result[idx_y].values,
+                            'stroke': df_cat['stroke'].values
+                        })
+                        
+                        # Ajouter variables catégorielles pour coloration
+                        for col in categorical_cols:
+                            mca_df[col] = df_cat[col].values
+                        
+                        # Créer graphique
+                        if color_by == 'stroke':
+                            color_map = {0: '#10b981', 1: '#ef4444'}
+                            labels = {'stroke': 'AVC'}
+                        else:
+                            color_map = None
+                            labels = {color_by: color_by}
+                        
+                        fig = px.scatter(
+                            mca_df, x=dim_x, y=dim_y, color=color_by,
+                            title=f'Projection ACM - {dim_x} vs {dim_y} (Coloré par {color_by})',
+                            color_discrete_map=color_map,
+                            labels=labels,
+                            opacity=0.7,
+                            hover_data={dim_x: ':.2f', dim_y: ':.2f'}
+                        )
+                        
+                        fig.update_layout(
+                            xaxis_title=f'{dim_x} ({explained_variance[idx_x]/total_inertia*100:.1f}% inertie)',
+                            yaxis_title=f'{dim_y} ({explained_variance[idx_y]/total_inertia*100:.1f}% inertie)',
+                            width=800, height=600
+                        )
+                        
+                        st.plotly_chart(fig, use_container_width=True)
+                    
+                    with tab2:
+                        st.subheader("📊 Analyse des Modalités")
+                        
+                        # Coordonnées des modalités
+                        column_coords = mca.column_coordinates(df_cat[categorical_cols])
+                        
+                        # Options de visualisation
+                        col1, col2 = st.columns(2)
+                        with col1:
+                            show_all_modalities = st.checkbox("Afficher toutes modalités", value=True)
+                        with col2:
+                            show_contrib_threshold = st.slider("Seuil contribution (%)", 0, 50, 10)
+                        
+                        fig = go.Figure()
+                        
+                        # Couleurs pour chaque variable
+                        colors = ['#ef4444', '#10b981', '#3b82f6', '#f59e0b', '#8b5cf6']
+                        
+                        for i, var in enumerate(categorical_cols):
+                            var_modalities = column_coords.loc[column_coords.index.str.startswith(f"{var}_")]
+                            
+                            # Calculer contributions pour filtrage optionnel
+                            contrib_x = (var_modalities[idx_x]**2 / explained_variance[idx_x]) * 100
+                            contrib_y = (var_modalities[idx_y]**2 / explained_variance[idx_y]) * 100
+                            contrib_total = contrib_x + contrib_y
+                            
+                            if not show_all_modalities:
+                                var_modalities = var_modalities[contrib_total >= show_contrib_threshold]
+                            
+                            if len(var_modalities) > 0:
+                                modalites = var_modalities.index.str.replace(f"{var}_", "")
+                                
+                                fig.add_trace(go.Scatter(
+                                    x=var_modalities[idx_x],
+                                    y=var_modalities[idx_y],
+                                    mode='markers+text',
+                                    name=var,
+                                    text=modalites,
+                                    textposition='top center',
+                                    marker=dict(size=12, color=colors[i % len(colors)]),
+                                    hovertemplate=
+                                        f'<b>{var}</b><br>' +
+                                        f'{dim_x}: %{{x:.3f}}<br>' +
+                                        f'{dim_y}: %{{y:.3f}}<br>' +
+                                        '<extra></extra>'
+                                ))
+                        
+                        fig.update_layout(
+                            title=f'Projection des Modalités - {dim_x} vs {dim_y}',
+                            xaxis_title=f'{dim_x} ({explained_variance[idx_x]/total_inertia*100:.1f}%)',
+                            yaxis_title=f'{dim_y} ({explained_variance[idx_y]/total_inertia*100:.1f}%)',
+                            width=900, height=700,
+                            xaxis=dict(zeroline=True, zerolinecolor='lightgray'),
+                            yaxis=dict(zeroline=True, zerolinecolor='lightgray')
+                        )
+                        
+                        st.plotly_chart(fig, use_container_width=True)
+                    
+                    with tab3:
+                        st.subheader("📈 Contributions des Variables et Modalités")
+                        
+                        # Tableau des contributions
+                        contrib_data = []
+                        
+                        for i, var in enumerate(categorical_cols):
+                            var_modalities = column_coords.loc[column_coords.index.str.startswith(f"{var}_")]
+                            
+                            for mod_idx, modality in var_modalities.iterrows():
+                                for dim_idx in range(n_components_acm):
+                                    contrib = (modality[dim_idx]**2 / explained_variance[dim_idx]) * 100
+                                    
+                                    contrib_data.append({
+                                        'Variable': var,
+                                        'Modalité': mod_idx.replace(f"{var}_", ""),
+                                        'Dimension': f'Dim{dim_idx+1}',
+                                        'Coordonnée': modality[dim_idx],
+                                        'Contribution (%)': contrib
+                                    })
+                        
+                        contrib_df = pd.DataFrame(contrib_data)
+                        
+                        # Top contributions par dimension
+                        for dim_idx in range(n_components_acm):
+                            st.write(f"**Top Modalités - Dimension {dim_idx+1}**")
+                            
+                            top_contrib = contrib_df[contrib_df['Dimension'] == f'Dim{dim_idx+1}'].nlargest(10, 'Contribution (%)')
+                            
+                            fig = px.bar(
+                                top_contrib, 
+                                x='Contribution (%)', 
+                                y='Modalité',
+                                color='Variable',
+                                title=f'Top 10 Contributions - Dimension {dim_idx+1}',
+                                orientation='h'
+                            )
+                            
+                            st.plotly_chart(fig, use_container_width=True)
+                    
+                    with tab4:
+                        st.subheader("🔍 Analyse des Tendances des Modalités")
+                        
+                        # Analyse de proximité des modalités
+                        st.markdown("#### 🎯 Modalités Proximales par Dimension")
+                        
+                        # Calcul distances entre modalités
+                        coords_array = column_coords.values[:, :2]  # Dim1 et Dim2
+                        from scipy.spatial.distance import pdist, squareform
+                        
+                        # Matrice de distances
+                        distances = squareform(pdist(coords_array, metric='euclidean'))
+                        distance_df = pd.DataFrame(
+                            distances, 
+                            index=column_coords.index, 
+                            columns=column_coords.index
+                        )
+                        
+                        # Groupes de modalités proches
+                        st.markdown("#### 🎪 Groupes de Modalités Associées")
+                        
+                        threshold_distance = st.slider("Seuil de proximité", 0.1, 2.0, 0.5, 0.1)
+                        
+                        # Identifier groupes
+                        from scipy.cluster.hierarchy import linkage, fcluster
+                        
+                        # Clustering hiérarchique
+                        linkage_matrix = linkage(coords_array, method='ward')
+                        clusters = fcluster(linkage_matrix, t=threshold_distance, criterion='distance')
+                        
+                        # Créer DataFrame des clusters
+                        cluster_df = pd.DataFrame({
+                            'Modalité': column_coords.index,
+                            'Variable': [mod.split('_')[0] for mod in column_coords.index],
+                            'Cluster': clusters,
+                            'Dim1': column_coords[0],
+                            'Dim2': column_coords[1]
+                        })
+                        
+                        # Afficher groupes
+                        for cluster_id in sorted(cluster_df['Cluster'].unique()):
+                            cluster_modalities = cluster_df[cluster_df['Cluster'] == cluster_id]
+                            
+                            if len(cluster_modalities) > 1:  # Au moins 2 modalités
+                                st.write(f"**Groupe {cluster_id}** ({len(cluster_modalities)} modalités):")
+                                
+                                group_text = " + ".join([
+                                    f"{row['Variable']}={row['Modalité'].split('_')[-1]}" 
+                                    for _, row in cluster_modalities.iterrows()
+                                ])
+                                st.info(f"📊 {group_text}")
+                                
+                                # Analyse du profil stroke pour ce groupe
+                                modality_stroke_analysis = []
+                                
+                                for _, mod_row in cluster_modalities.iterrows():
+                                    var_name = mod_row['Variable']
+                                    mod_value = mod_row['Modalité'].split('_')[-1]
+                                    
+                                    if var_name in df_cat.columns:
+                                        subset = df_cat[df_cat[var_name] == mod_value]
+                                        stroke_rate = subset['stroke'].mean() * 100 if len(subset) > 0 else 0
+                                        modality_stroke_analysis.append(f"{var_name}={mod_value}: {stroke_rate:.1f}% AVC")
+                                
+                                if modality_stroke_analysis:
+                                    st.text("Taux AVC par modalité: " + " | ".join(modality_stroke_analysis))
+                                
+                                st.write("---")
+                        
+                        # Interprétation automatique
+                        st.markdown("#### 🧠 Interprétation Automatique")
+                        
+                        # Variables qui discriminent le mieux
+                        var_discrimination = {}
+                        
+                        for var in categorical_cols:
+                            var_coords = column_coords.loc[column_coords.index.str.startswith(f"{var}_")]
+                            # Mesure de dispersion = écart-type des coordonnées
+                            dispersion = np.std(var_coords.values, axis=0).mean()
+                            var_discrimination[var] = dispersion
+                        
+                        best_discriminating_var = max(var_discrimination, key=var_discrimination.get)
+                        
+                        st.success(f"""
+                        🎯 **Variable la plus discriminante**: **{best_discriminating_var}**
+                        
+                        Cette variable a les modalités les plus **éloignées** dans l'espace ACM,
+                        indiquant qu'elle contribue le plus à la structure des données.
+                        """)
+                        
+                        # Modalités extrêmes
+                        extreme_modalities = []
+                        
+                        for dim_idx in [0, 1]:  # Dim1 et Dim2
+                            coords_dim = column_coords[dim_idx]
+                            min_mod = coords_dim.idxmin()
+                            max_mod = coords_dim.idxmax()
+                            
+                            extreme_modalities.extend([
+                                f"Dim{dim_idx+1} minimum: {min_mod}",
+                                f"Dim{dim_idx+1} maximum: {max_mod}"
+                            ])
+                        
+                        st.info(f"""
+                        🎪 **Modalités extrêmes**:
+                        
+                        {chr(10).join(['• ' + mod for mod in extreme_modalities])}
+                        
+                        Ces modalités "tirent" les axes et définissent les directions principales de variation.
+                        """)
+
+            elif analysis_type == "ACM par Sous-groupes":
+                # === ACM PAR SOUS-GROUPES ===
+                st.markdown("### 📊 ACM par Sous-groupes Thématiques")
+                
+                tabs = st.tabs([f"🎯 {group_name}" for group_name in variable_groups.keys()])
+                
+                for tab_idx, (group_name, group_vars) in enumerate(variable_groups.items()):
+                    with tabs[tab_idx]:
+                        st.subheader(f"📐 ACM - {group_name}")
+                        
+                        if len(group_vars) < 2:
+                            st.warning(f"⚠️ Groupe '{group_name}' contient seulement {len(group_vars)} variable(s). ACM nécessite au minimum 2 variables.")
+                            continue
+                        
+                        # Vérifier variables disponibles
+                        available_vars = [var for var in group_vars if var in df_cat.columns]
+                        
+                        if len(available_vars) < 2:
+                            st.error(f"❌ Variables manquantes pour le groupe '{group_name}': {group_vars}")
+                            continue
+                        
+                        st.info(f"📋 Variables analysées: {available_vars}")
+                        
+                        # ACM du sous-groupe
+                        mca_group = prince.MCA(n_components=min(3, len(available_vars)), random_state=42)
+                        mca_group_result = mca_group.fit_transform(df_cat[available_vars])
+                        
+                        # Métriques
+                        group_explained_var = mca_group.eigenvalues_
+                        group_total_inertia = group_explained_var.sum()
+                        
+                        col1, col2 = st.columns(2)
+                        
+                        with col1:
+                            st.metric("Variables", len(available_vars))
+                            st.metric("Inertie totale", f"{group_total_inertia:.3f}")
+                        
+                        with col2:
+                            st.metric("Dim1 (%)", f"{group_explained_var[0]/group_total_inertia*100:.1f}")
+                            if len(group_explained_var) > 1:
+                                st.metric("Dim2 (%)", f"{group_explained_var[1]/group_total_inertia*100:.1f}")
+                        
+                        # Projection individus
+                        if len(mca_group_result.columns) >= 2:
+                            mca_group_df = pd.DataFrame({
+                                'Dim1': mca_group_result[0].values,
+                                'Dim2': mca_group_result[1].values,
+                                'stroke': df_cat['stroke'].values
+                            })
+                            
+                            fig = px.scatter(
+                                mca_group_df, x='Dim1', y='Dim2', color='stroke',
+                                title=f'ACM {group_name} - Projection Individus',
+                                color_discrete_map={0: '#10b981', 1: '#ef4444'},
+                                opacity=0.7
+                            )
+                            
+                            st.plotly_chart(fig, use_container_width=True)
+                        
+                        # Modalités du groupe
+                        group_column_coords = mca_group.column_coordinates(df_cat[available_vars])
+                        
+                        # Graphique modalités
+                        fig_mod = go.Figure()
+                        
+                        colors_group = ['#ef4444', '#10b981', '#3b82f6', '#f59e0b']
+                        
+                        for i, var in enumerate(available_vars):
+                            var_modalities = group_column_coords.loc[group_column_coords.index.str.startswith(f"{var}_")]
+                            modalites = var_modalities.index.str.replace(f"{var}_", "")
+                            
+                            fig_mod.add_trace(go.Scatter(
+                                x=var_modalities[0],
+                                y=var_modalities[1] if len(group_column_coords.columns) > 1 else [0]*len(var_modalities),
+                                mode='markers+text',
+                                name=var,
+                                text=modalites,
+                                textposition='top center',
+                                marker=dict(size=15, color=colors_group[i % len(colors_group)])
+                            ))
+                        
+                        fig_mod.update_layout(
+                            title=f'Modalités - {group_name}',
+                            xaxis_title="Dimension 1",
+                            yaxis_title="Dimension 2" if len(group_column_coords.columns) > 1 else "0",
+                            width=700, height=500
+                        )
+                        
+                        st.plotly_chart(fig_mod, use_container_width=True)
+                        
+                        # Interprétation spécifique au groupe
+                        st.markdown(f"#### 🧠 Insights - {group_name}")
+                        
+                        # Contribution des modalités
+                        group_contrib_data = []
+                        
+                        for var in available_vars:
+                            var_modalities = group_column_coords.loc[group_column_coords.index.str.startswith(f"{var}_")]
+                            
+                            for mod_idx, modality in var_modalities.iterrows():
+                                contrib_dim1 = (modality[0]**2 / group_explained_var[0]) * 100
+                                
+                                group_contrib_data.append({
+                                    'Variable': var,
+                                    'Modalité': mod_idx.replace(f"{var}_", ""),
+                                    'Contribution Dim1 (%)': contrib_dim1,
+                                    'Coordonnée Dim1': modality[0]
+                                })
+                        
+                        group_contrib_df = pd.DataFrame(group_contrib_data)
+                        top_contrib_group = group_contrib_df.nlargest(5, 'Contribution Dim1 (%)')
+                        
+                        st.dataframe(top_contrib_group, use_container_width=True, hide_index=True)
+
+            else:  # ACM Comparative
+                # === ACM COMPARATIVE ===
+                st.markdown("### 🔄 ACM Comparative : Global vs Sous-groupes")
+                
+                # ACM globale
+                mca_global = prince.MCA(n_components=3, random_state=42)
+                mca_global_result = mca_global.fit_transform(df_cat[categorical_cols])
+                global_explained_var = mca_global.eigenvalues_
+                
+                # ACM par groupe
+                group_results = {}
+                
+                for group_name, group_vars in variable_groups.items():
+                    available_vars = [var for var in group_vars if var in df_cat.columns]
+                    
+                    if len(available_vars) >= 2:
+                        mca_group = prince.MCA(n_components=min(3, len(available_vars)), random_state=42)
+                        mca_group_result = mca_group.fit_transform(df_cat[available_vars])
+                        group_explained_var = mca_group.eigenvalues_
+                        
+                        group_results[group_name] = {
+                            'mca': mca_group,
+                            'result': mca_group_result,
+                            'explained_var': group_explained_var,
+                            'variables': available_vars
+                        }
+                
+                # Comparaison des performances
+                st.subheader("📊 Comparaison des Inertie Expliquées")
+                
+                comparison_data = []
+                
+                # Global
+                global_inertia_2d = (global_explained_var[0] + global_explained_var[1]) / global_explained_var.sum() * 100
+                comparison_data.append({
+                    'Analyse': 'ACM Globale',
+                    'Variables': len(categorical_cols),
+                    'Inertie Dim1+Dim2 (%)': global_inertia_2d,
+                    'Inertie Dim1 (%)': global_explained_var[0] / global_explained_var.sum() * 100
+                })
+                
+                # Groupes
+                for group_name, group_info in group_results.items():
+                    group_inertia_total = group_info['explained_var'].sum()
+                    group_inertia_2d = (group_info['explained_var'][0] + 
+                                       (group_info['explained_var'][1] if len(group_info['explained_var']) > 1 else 0)
+                                      ) / group_inertia_total * 100
+                    
+                    comparison_data.append({
+                        'Analyse': f"ACM {group_name}",
+                        'Variables': len(group_info['variables']),
+                        'Inertie Dim1+Dim2 (%)': group_inertia_2d,
+                        'Inertie Dim1 (%)': group_info['explained_var'][0] / group_inertia_total * 100
                     })
                 
-                    fig = px.scatter(mca_df, x='Dim1', y='Dim2', color='stroke',
-                                   title='Projection ACM des Individus',
-                                   color_discrete_sequence=['#4ade80', '#ef4444'],
-                                   opacity=0.6)
-                    st.plotly_chart(fig, use_container_width=True)
+                comparison_df = pd.DataFrame(comparison_data)
                 
-                with tab2:
-                    column_coords = mca.column_coordinates(df_cat[categorical_cols])
-                    
-                    fig = go.Figure()
-                    
-                    for col in categorical_cols:
-                        col_data = column_coords.loc[column_coords.index.str.startswith(f"{col}_")]
-                        fig.add_trace(go.Scatter(
-                            x=col_data[0],
-                            y=col_data[1],
-                            mode='markers+text',
-                            name=col,
-                            text=col_data.index.str.replace(f"{col}_", ""),
-                            textposition='top center',
-                            marker=dict(size=12)
-                        ))
-                    
-                    fig.update_layout(title='Projection des Modalités (ACM)', width=900, height=700)
-                    st.plotly_chart(fig, use_container_width=True)
+                fig_comp = px.bar(
+                    comparison_df, 
+                    x='Analyse', 
+                    y='Inertie Dim1+Dim2 (%)',
+                    title='Comparaison Inertie Expliquée (Dim1 + Dim2)',
+                    color='Variables'
+                )
+                
+                st.plotly_chart(fig_comp, use_container_width=True)
+                st.dataframe(comparison_df, use_container_width=True, hide_index=True)
+                
+                # Recommandations
+                best_analysis = comparison_df.loc[comparison_df['Inertie Dim1+Dim2 (%)'].idxmax()]
+                
+                st.success(f"""
+                🎯 **Meilleure approche**: **{best_analysis['Analyse']}**
+                
+                - Inertie expliquée: **{best_analysis['Inertie Dim1+Dim2 (%)']:.1f}%**
+                - Variables utilisées: **{int(best_analysis['Variables'])}**
+                
+                Cette approche capture le mieux la structure des données catégorielles.
+                """)
         
         except Exception as e:
             st.error(f"Erreur ACM: {e}")
+            import traceback
+            st.code(traceback.format_exc())
     
     # === PAGE: AFD ===
     elif page == "🎲 Étape 7c: AFD (Analyse Factorielle Discriminante)":
@@ -5129,7 +6813,7 @@ def main():
                     col2.metric("Probabilité Pas d'AVC", f"{prob_no_stroke:.1f}%")
                     
                     # Barre de progression
-                    st.progress(prob_stroke / 100)
+                    st.progress(float(prob_stroke / 100))
                     
                     # Interprétation du risque
                     st.markdown("### 📊 Interprétation du Niveau de Risque")

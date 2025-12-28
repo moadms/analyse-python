@@ -130,8 +130,7 @@ class ModelTrainer:
         default_params = {
             'n_estimators': 100,
             'learning_rate': 1.0,
-            'random_state': 42,
-            'algorithm': 'SAMME.R'
+            'random_state': 42
         }
         default_params.update(params)
         
