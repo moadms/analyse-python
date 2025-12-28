@@ -24,7 +24,7 @@ wheels/
 venv/
 env/
 ENV/
-.venv
+
 
 # Streamlit
 .streamlit/secrets.toml
