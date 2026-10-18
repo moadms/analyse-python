@@ -207,6 +207,28 @@ models = {
 }
 ```
 
+## ☁️ Déploiement en Ligne (Hébergement Cloud)
+
+### 🌟 1. Déploiement Gratuit sur Streamlit Community Cloud (Recommandé)
+Streamlit Cloud est la plateforme officielle et gratuite spécialement conçue pour les applications Streamlit (support natif des WebSockets, mémoire ML et session continue) :
+1. Rendez-vous sur [share.streamlit.io](https://share.streamlit.io/) et connectez-vous avec votre compte GitHub **moadms**.
+2. Cliquez sur **"New app"**.
+3. Sélectionnez le repository : `moadms/analyse-python`.
+4. Spécifiez la branche : `main`.
+5. Spécifiez le fichier principal : `app.py`.
+6. Cliquez sur **"Deploy!"** : votre application sera en ligne avec une URL publique permanente en quelques minutes !
+
+> [!NOTE]
+> **Pourquoi pas Vercel ?**
+> Vercel est une plateforme conçue pour le Web statique et les fonctions éphémères (Serverless). Une application Streamlit d'analyse de données requiert une connexion WebSocket persistante, un serveur Python actif en continu et plus de 450 Mo de bibliothèques ML (Scikit-learn, XGBoost, Scipy, etc.), ce qui dépasse largement les limites Serverless de Vercel (limite à 250 Mo décompressé et pas de WebSockets).
+
+### 🐳 2. Déploiement avec Docker / Render / Hugging Face Spaces
+Un `Dockerfile` optimisé est inclus dans le projet pour un déploiement instantané :
+```bash
+docker build -t stroke-ml-app .
+docker run -p 8501:8501 stroke-ml-app
+```
+
 ## 🤝 Contribution
 
 Les contributions sont les bienvenues ! 
