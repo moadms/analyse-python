@@ -17,7 +17,7 @@ def load_and_clean_data(filepath):
     
     # Gérer les valeurs manquantes
     if 'bmi' in df.columns:
-        df['bmi'].fillna(df['bmi'].median(), inplace=True)
+        df['bmi'] = df['bmi'].fillna(df['bmi'].median())
     
     # Supprimer les lignes avec 'Other' dans gender (rare)
     if 'gender' in df.columns:
